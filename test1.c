@@ -8,30 +8,56 @@
 //}
 
 //1. 打印100~200 之间的素数
+//#include <stdio.h>
+//#include <math.h>
+//int main()
+//{
+//    int i,n,k;
+//	int count=0;
+//    for(n=100;n<201;n++)
+//    {
+//       k=sqrt(n);
+//	   for(i=2;i<=k;i++)
+//	   {
+//		   if(n%i==0)
+//		   {
+//			   break;
+//		   }  
+//	   }
+//	   if(i>k)
+//		   {
+//			   printf("%d ",n);
+//			   count++;
+//		   }
+//    }
+//	printf("\ncount:%d\n",count);
+//    return 0;
+//}
+
+//2. 输出乘法口诀表
+
 #include <stdio.h>
-#include <math.h>
+
 int main()
+
 {
-    int i,n,k;
-	int count=0;
-    for(n=100;n<201;n++)
+
+  int i,j;
+
+  for(i=1;i<=9;i++)
+
     {
-       k=sqrt(n);
-	   for(i=2;i<=k;i++)
-	   {
-		   if(n%i==0)
-		   {
-			   break;
-		   }  
-	   }
-	   if(i>k)
-		   {
-			   printf("%d ",n);
-			   count++;
-		   }
+
+       for(j=1;j<=i;j++)
+
+       printf(" %d×%d=%d",j,i,i*j);
+
+       printf("\n");
+
     }
-	printf("\ncount:%d\n",count);
-    return 0;
+
+  return 0;
+
 }
 
 //2.使用main函数的参数，实现一个整数计算器，程序可以接受三个参数，第一个参数“-a”选项
