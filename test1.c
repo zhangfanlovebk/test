@@ -35,29 +35,17 @@
 //}
 
 //2. 输出乘法口诀表
-
 #include <stdio.h>
-
 int main()
-
 {
-
   int i,j;
-
   for(i=1;i<=9;i++)
-
     {
-
        for(j=1;j<=i;j++)
-
        printf(" %d×%d=%d",j,i,i*j);
-
        printf("\n");
-
     }
-
   return 0;
-
 }
 
 //2.使用main函数的参数，实现一个整数计算器，程序可以接受三个参数，第一个参数“-a”选项
