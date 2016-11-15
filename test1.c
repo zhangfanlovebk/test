@@ -53,13 +53,17 @@
 #include<stdio.h>
 int main()
 {
- int year,count=0;
+ int year;
+ int count=0;
  for(year=1000;year<=2000;year++)
   {
-  if(year%4==0&&year%100!=0||year%400==0)printf("%d ",year,count++); 
-  /*运用或运算判断闰年每个数字中间用空格隔开*/
+	if(year%4==0&&year%100!=0||year%400==0)
+	{
+		printf("%d ",year,count++); 
+	}
+	/*运用或运算判断闰年每个数字中间用空格隔开*/
   }
-  printf("\ncount=%d",count);/*下一行输出1000-2000年间是闰年的总个数*/
+  printf("\ncount=%d\n",count);/*下一行输出1000-2000年间是闰年的总个数*/
   return  0;
 }
 
@@ -71,3 +75,72 @@ int main()
 //      执行1+2输出3
 
 //3.写冒泡排序可以排序一个整型数组。
+a
+x
+c
+
+s
+
+df
+b
+c
+b
+f
+gf
+gf
+s
+
+s
+f
+d
+
+t
+g
+dsc
+
+dfg
+
+fs
+e
+
+r
+g
+hy
+u
+yh
+
+
+w
+
+f
+rt
+
+j
+
+
+g
+t
+trt
+
+
+hh
+
+y
+r
+
+t
+tt
+
+f
+s
+y
+hh
+yi
+uk
+
+mu
+i
+t
+g
+t6
+5
