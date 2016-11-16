@@ -73,93 +73,94 @@
 //执行加法,“-s”选项执行减法，“-m”选项执行乘法，“-d”选项执行除法，后面两个参数为操作数
 //例如：输入test.exe -a 1 2
 //      执行1+2输出3
-#include<stdio.h>  
-#include<stdlib.h>  
-#include<assert.h>  
-int my_math(char *p, int num1, int num2)  
-{  
-    assert(p);  
-    if (p == "-a")  
-        return num1 + num2;  
-    else if (p == "-s")  
-        return num1 - num2;  
-    else if (p == "-m")  
-        return num1*num2;  
-    else if (p == "-d")  
-        return num1 / num2;  
-    else return 0;  
-}  
-int main()  
-{  
-    char a,b;  
-    char *p=&b;  
-    int num1 = 0;  
-    int num2 = 0;
-	int result;
-    printf("请输入要计算的算式：");  
-    scanf("%d%c%d",&num1,&a,&num2);  //录入算式，num1,num2为操作数，a保存的是操作符  
-    while (1)      //分别对参数指针p赋值
-    {  
-        if (a == '+')  
-        {  
-            p= "-a" ;  
-            break;  
-        }  
-        else if (a == '-')  
-        {  
-            p = "-s";  
-            break;  
-        }  
-        else if (a == '*')  
-        {  
-            p = "-m";  
-            break;  
-        }  
-        else if (a == '/')  
-        {  
-            p = "-d";  
-            break;  
-        }  
-        else *p = '\0';  
-    }  
-    result = my_math(p, num1, num2);    //函数调用，得到结果。  
-    printf("%d%c%d=%d\n",num1,a,num2,result);  //分别输出  
-    return 0;  
-} 
+//#include<stdio.h>  
+//#include<stdlib.h>  
+//#include<assert.h>  
+//int my_math(char *p, int num1, int num2)  
+//{  
+//    assert(p);  
+//    if (p == "-a")  
+//        return num1 + num2;  
+//    else if (p == "-s")  
+//        return num1 - num2;  
+//    else if (p == "-m")  
+//        return num1*num2;  
+//    else if (p == "-d")  
+//        return num1 / num2;  
+//    else return 0;  
+//}  
+//int main()  
+//{  
+//    char a,b;  
+//    char *p=&b;  
+//    int num1 = 0;  
+//    int num2 = 0;
+//	int ret;
+//    printf("请输入要计算的算式：\n");  
+//    scanf("%d%c%d",&num1,&a,&num2);  //录入算式，num1,num2为操作数，a保存的是操作符  
+//    while (1)      //分别对参数指针p赋值
+//    {  
+//        if (a == '+')  
+//        {  
+//            p= "-a" ;  
+//            break;  
+//        }  
+//        else if (a == '-')  
+//        {  
+//            p = "-s";  
+//            break;  
+//        }  
+//        else if (a == '*')  
+//        {  
+//            p = "-m";  
+//            break;  
+//        }  
+//        else if (a == '/')  
+//        {  
+//            p = "-d";  
+//            break;  
+//        }  
+//        else *p = '\0';  
+//    }  
+//    ret = my_math(p, num1, num2);    //函数调用，得到结果。  
+//    printf("%d%c%d=%d\n",num1,a,num2,ret);  //分别输出  
+//    return 0;  
+//} 
+
 
 //3.写冒泡排序可以排序一个整型数组。
-//#include<stdio.h>
-//#include<stdlib.h>
-//void bubble(int str[],int len)
-//{
-//    int i,j,temp;
-//    for(i=0;i<len-1;i++)//进行len-1趟比较
-//    {
-//        for(j=0;j<len-1-i;j++)//进行len-1-i次两两比较
-//        {
-//            if(str[j]>str[j+1])
-//            {
-//                temp=str[j];//交换两个数
-//                str[j]=str[j+1];
-//                str[j+1]=temp;
-//            }
-//        }
-//    }
-//}
-//
-//int main()
-//{
-//    int arr[10],len,i;
-//    for(i=0;i<10;i++)
-//    {
-//        scanf("%d",&arr[i]);
-//    }
-//    len=sizeof(arr)/sizeof(arr[0]);
-//    bubble(arr,len);
-//    for(i=0;i<len;i++)
-//    {
-//        printf("%d ",arr[i]);
-//    }
-//	printf("\n");
-//    return 0;
-//}
+#include<stdio.h>
+#include<stdlib.h>
+void bubble(int str[],int len)
+{
+    int i,j,temp;
+    for(i=0;i<len-1;i++)//进行len-1趟比较
+    {
+        for(j=0;j<len-1-i;j++)//进行len-1-i次两两比较
+        {
+            if(str[j]>str[j+1])
+            {
+                temp=str[j];//交换两个数
+                str[j]=str[j+1];
+                str[j+1]=temp;
+            }
+        }
+    }
+}
+
+int main()
+{
+    int arr[10],len,i;
+    for(i=0;i<10;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    len=sizeof(arr)/sizeof(arr[0]);
+    bubble(arr,len);
+    for(i=0;i<len;i++)
+    {
+        printf("%d ",arr[i]);
+    }
+	printf("\n");
+    return 0;
+}
