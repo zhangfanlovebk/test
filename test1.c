@@ -129,38 +129,83 @@
 
 
 //3.写冒泡排序可以排序一个整型数组。
+//#include<stdio.h>
+//#include<stdlib.h>
+//void bubble(int str[],int len)
+//{
+//    int i,j,temp;
+//    for(i=0;i<len-1;i++)//进行len-1趟比较
+//    {
+//        for(j=0;j<len-1-i;j++)//进行len-1-i次两两比较
+//        {
+//            if(str[j]>str[j+1])
+//            {
+//                temp=str[j];//交换两个数
+//                str[j]=str[j+1];
+//                str[j+1]=temp;
+//            }
+//        }
+//    }
+//}
+//
+//int main()
+//{
+//    int arr[10],len,i;
+//    for(i=0;i<10;i++)
+//    {
+//        scanf("%d",&arr[i]);
+//    }
+//    len=sizeof(arr)/sizeof(arr[0]);
+//    bubble(arr,len);
+//    for(i=0;i<len;i++)
+//    {
+//        printf("%d ",arr[i]);
+//    }
+//	printf("\n");
+//    return 0;
+//}
+
+//1. 给定两个整形变量的值，将两个值的内容进行交换。
+
 #include<stdio.h>
-#include<stdlib.h>
-void bubble(int str[],int len)
-{
-    int i,j,temp;
-    for(i=0;i<len-1;i++)//进行len-1趟比较
-    {
-        for(j=0;j<len-1-i;j++)//进行len-1-i次两两比较
-        {
-            if(str[j]>str[j+1])
-            {
-                temp=str[j];//交换两个数
-                str[j]=str[j+1];
-                str[j+1]=temp;
-            }
-        }
-    }
-}
 
 int main()
+
 {
-    int arr[10],len,i;
-    for(i=0;i<10;i++)
-    {
-        scanf("%d",&arr[i]);
-    }
-    len=sizeof(arr)/sizeof(arr[0]);
-    bubble(arr,len);
-    for(i=0;i<len;i++)
-    {
-        printf("%d ",arr[i]);
-    }
-	printf("\n");
-    return 0;
+
+int a=8,b=3,c;
+
+c=a;
+
+a=b；
+
+b=c;//找一个中间变量交换值
+
+printf("a=%d\nb=%d\n",a,b);
+
+   return 0;
+
+}
+
+
+//2. 不允许创建临时变量，交换两个数的内容（附加题）
+
+#include <stdio.h>
+
+int main()
+
+{
+
+int a=3,b=5;
+
+a=a*b;
+
+b=a/b;
+
+a=a/b;//也可以用加减法（a=a+b;b=a-b;a=a-b）
+
+printf("a=%d\nb=%d\n",a,b);
+
+   return 0;
+
 }
