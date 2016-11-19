@@ -166,46 +166,150 @@
 //}
 
 //1. 给定两个整形变量的值，将两个值的内容进行交换。
-
-#include<stdio.h>
-
-int main()
-
-{
-
-int a=8,b=3,c;
-
-c=a;
-
-a=b；
-
-b=c;//找一个中间变量交换值
-
-printf("a=%d\nb=%d\n",a,b);
-
-   return 0;
-
-}
-
+//#include<stdio.h>
+//int main()
+//{
+//	int a=8,b=3,c;
+//	c=a;
+//	a=b;
+//	b=c;//找一个中间变量交换值
+//	printf("a=%d\nb=%d\n",a,b);
+//    return 0;
+//}
 
 //2. 不允许创建临时变量，交换两个数的内容（附加题）
+//#include <stdio.h>
+//int main()
+//{
+//	int a=3,b=5;
+//	a=a*b;
+//	b=a/b;
+//	a=a/b;//也可以用加减法（a=a+b;b=a-b;a=a-b）
+//	printf("a=%d\nb=%d\n",a,b);
+//    return 0;
+//}
 
-#include <stdio.h>
+//1.调整数组使奇数全部都位于偶数前面。
+//题目：输入一个整数数组，实现一个函数，来调整该数组中数字的顺序
+//使得数组中所有的奇数位于数组的前半部分，所有偶数位于数组的后半部分。
+//廖雪峰git
+//第一种。。。。。。。错误
+//#include <stdio.h>
+//void sort(int *p, int len)
+//{
+//    int *end = p;    //中间的没有交换过来？？？需要完善
+//	int tmp;
+//    end = p + len - 1;
+//    while (p<end)
+//    {
+//        if (*p % 2 == 0)
+//        {
+//            while (end)
+//            {
+//                if (*end % 2 == 1)
+//                {
+//                    break;
+//                }
+//                end--;
+//            }
+//            tmp = *end;
+//            *end = *p;
+//            *p = tmp;
+//            p++;
+//        }
+//        else
+//        {
+//            p++;
+//        }  
+//     }
+//}
+//int main()
+//{
+//	int i = 0;
+//    int arr[] = {1,2,3,4,5,6,7,8,9,0};
+//    int len = sizeof(arr) / sizeof(arr[0]);
+//    sort(arr,len);
+//    for (i = 0; i < len; i++)
+//    {
+//        printf("%d ", arr[i]);
+//    }
+//	printf("\n");
+//    return 0;
+//}
 
-int main()
+//第二种
+//#include<stdio.h>
+//#include<assert.h>
+//void sort(int arr[], int len)
+//{
+//	int begin = 0;
+//    int a = 0;
+//    int end = len - 1;
+//	int j = 0;
+//	assert(arr);
+//    if (arr == NULL || len <= 0)
+//    {
+//        return;
+//    }
+//    while (begin<end)
+//    {
+//        while (begin<end && arr[begin] % 2 != 0) //向后移动begin，直到它指向偶数
+//        {
+//            begin++;
+//        }
+//        while (begin<end && arr[end] % 2 == 0)   // 向前移动End，直到它指向奇数
+//        {
+//            end--;
+//        }
+//        if (begin<end)
+//        {
+//            a = arr[begin];     // 交换偶数和奇数
+//            arr[begin] = arr[end];
+//            arr[end] = a;
+//        }
+//    }
+//    for (j = 0; j<len; j++)
+//        {
+//            printf("%d ", arr[j]);
+//        }
+//}
+//
+//int main()
+//{
+//    int arr[] = {1,2,3,4,5,6,7,8,9,0};
+//    int len = sizeof(arr) / sizeof(arr[0]);
+//    sort(arr, len);
+//	printf("\n");
+//    return 0;
+//}
 
-{
 
-int a=3,b=5;
+//2.有一个二维数组.----杨氏矩阵
+//数组的每行从左到右是递增的，每列从上到下是递增的.
+//在这样的数组中查找一个数字是否存在。
+//时间复杂度小于O(N);
+//1 2 3
+//4 5 6
+//7 8 9
 
-a=a*b;
 
-b=a/b;
+//3.一个字符串中查找第一个只出现一次的字符。
+//要求复杂度为O(N).
 
-a=a/b;//也可以用加减法（a=a+b;b=a-b;a=a-b）
 
-printf("a=%d\nb=%d\n",a,b);
+//4.模拟实现以下函数：
+//strcpy
 
-   return 0;
+//strncpy
 
-}
+//strcat
+
+//strncat
+
+//strcmp
+
+//strncmp
+
+//memcpy
+
+//memmove
