@@ -283,6 +283,44 @@
 //    return 0;
 //}
 
+//终极代码
+//#include<stdio.h>  
+//#include<stdlib.h>  
+//void adjust_arr(int arr[],int sz)  
+//{  
+//    int tmp=0;  
+//    int left=0;  
+//    int right=sz-1;  
+//    while(left<right)  
+//    {  
+//        while((left<right)&&(arr[left]%2==1))   //此处left<rigft防止left++产生溢出  
+//        {  
+//            left++;  
+//        }  
+//        while((left<right)&&(arr[right]%2==0))  
+//        {  
+//            right--;  
+//        }  
+//        if(left<right)  
+//        {  
+//            tmp=arr[left];  
+//            arr[left]=arr[right];  
+//            arr[right]=tmp;  
+//        }  
+//    }  
+//}  
+//int main()  
+//{  
+//    int arr[10]={0,1,2,3,4,5,6,7,8,9};  
+//    int i=0;  
+//    adjust_arr(arr,10);  
+//    for(i=0;i<10;i++)  
+//    {  
+//       printf("%d ",arr[i]);  
+//    }  
+//    printf("\n");
+//    return 0;  
+//} 
 
 //2.有一个二维数组.----杨氏矩阵
 //数组的每行从左到右是递增的，每列从上到下是递增的.
@@ -291,10 +329,227 @@
 //1 2 3
 //4 5 6
 //7 8 9
+//第一种
+//#include <stdio.h>  
+//#define ROW 4  
+//#define COL 4  
+//int Yang(int arr[ROW][COL],int val)  
+//{  
+//    int i = 0;  
+//    int j = COL - 1;  
+//    int tmp = arr[i][j];  
+//    while(1)  
+//    {  
+//        if(tmp == val)  
+//        {  
+//            return 1;  
+//        }  
+//        else if(tmp < val && j >= 0)  
+//        {  
+//            tmp = arr[++i][j];  
+//        }  
+//        else if(tmp > val &&j >= 0)  
+//        {  
+//            tmp = arr[i][--j];  
+//        }  
+//        else  
+//        {  
+//            return 0;  
+//        }  
+//    }       
+//}  
+//int main()  
+//{  
+//    int a[ROW][COL] = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16};  
+//    int i = 0;  
+//    int j = 0;  
+//    int num;  
+//    printf("数组为:\n");  
+//    for(i = 0; i<ROW; i++)  
+//    {  
+//        for(j = 0; j < COL; j++)  
+//        {  
+//            printf("%5d",a[i][j]);  
+//        }  
+//        printf("\n");  
+//    }  
+//    printf("Please Enter:");  
+//    scanf("%d",&num);  
+//    if(Yang(a,num))  
+//    {  
+//        printf("%d在该数组中\n",num);  
+//    }  
+//    else  
+//    {  
+//        printf("%d不在该数组中\n",num);  
+//    }    
+//    return 0;  
+//}
 
+//第二种
+/*#include <stdio.h>  
+#define col 4  
+#define rol 4  
+  
+int yang(int(*p)[col], int num)  
+{  
+    int i = 0;  
+    int j = col - 1;  
+    while (j+1)  
+    {  
+        int *q = &(p[i][j]);  
+        if (*q == num)  
+            return 1;  
+        else if (*q < num)  
+        {  
+            p++;  
+        }  
+        else if (*q > num)  
+        {  
+            q--;  
+            j--;  
+        }  
+    }  
+    return -1;  
+}  
+  
+int main()  
+{  
+    int arr[rol][col] = { { 1, 2, 3, 4 }, { 5, 6, 7, 8 }, \
+	{ 9, 10, 11, 12 }, { 13, 14, 15, 16 } };  
+    printf("%d\n", yang(arr, 6));  
+    printf("%d\n", yang(arr, 15));  
+    printf("%d\n", yang(arr, 20));  
+    printf("%d\n", yang(arr, 1));  
+    printf("%d\n", yang(arr, 16));  
+    return 0;  
+}*/ 
+
+//时间复杂度小于O(N)
+//#include<stdio.h>  
+//#include<stdlib.h>  
+//int find_num(int arr[][3],int rows,int cols,int key) //以右上角开始查找  
+//{  
+//    int row=0;  
+//    int col=cols-1;  
+//    while((row<=rows-1)&&(col>=0))  
+//    {  
+//        if(arr[row][col]==key)
+//		{
+//            return 1;
+//		}
+//        else if(arr[row][col]>key)  
+//        {  
+//            col--;  
+//        }  
+//        else  
+//        {  
+//            row++;  
+//        }  
+//    }  
+//    return 0;  
+//}  
+//*以左下角开始查找 
+//int find_num(int arr[][3],int rows,int cols,int key) 
+//{ 
+//    int row=rows-1; 
+//    int col=0; 
+//    while((row>0)&&(col<=cols-1)) 
+//    { 
+//        if(arr[row][col]==key) 
+//            return 1; 
+//        else if(arr[row][col]>key) 
+//        { 
+//            row--; 
+//        } 
+//        else 
+//        { 
+//            col++; 
+//        } 
+//    } 
+//    return 0; 
+//} */ 
+//int main()  
+//{  
+//    int arr[][3]={1,2,3,2,3,4,5,6,7};  
+//    int key=0;  
+//    int ret=0;  
+//    printf("请输入一个要查找的数：\n");  
+//    scanf("%d",&key);  
+//    ret=find_num(arr,3,3,key);  
+//    if(ret==1)  
+//    {  
+//        printf("查找成功！\n");  
+//    }  
+//    else  
+//    {  
+//        printf("查找失败！\n");  
+//    }  
+//    return 0;  
+//} 
 
 //3.一个字符串中查找第一个只出现一次的字符。
 //要求复杂度为O(N).
+
+//第一种：遍历两次，复杂度O(N^2)
+//#include "stdio.h"
+//#include "stdlib.h"
+//char firstSingle(char * str)
+//{
+//	//ASCII表有255个字符，创建一个255个元素的映射数组初始为0
+//	int asc[255] = {0};
+//	int i;
+//	//遍历字符串，同时做字符的ASCII值映射到数组下标统计出现次数；
+//	for(i=0;str[i]!='\0';i++)
+//		asc[str[i]]++;
+//	//再次遍历，找到第一个出现一次的字符即为所求
+//	for(i=0;str[i]!='\0';i++)
+//		if(asc[str[i]] == 1)
+//			return str[i];
+//	//否则返回空
+//	return '\0';
+//}
+//
+//int main(void)
+//{
+//	char str[] = "abaccdeffb";
+//	char tmp = firstSingle(str);
+//	printf("%c\n",tmp);
+//	return 0;
+//}
+
+//O(n)的时间复杂度，O(1)的空间复杂度
+#include <stdio.h>  
+#include <stdlib.h>  
+#include <string.h>  
+void findSingle(char *arr, int len)  
+{  
+    int hashtable[256] = {0};  
+    int i;
+    for(i=0;i<len;i++)
+	{
+        hashtable[arr[i]-'0']++;
+	}
+    for(i=0;i<len;i++)  
+    {  
+        if(hashtable[arr[i]-'0'] == 1)  
+        {  
+            printf("%c\n",arr[i]);  
+            break;  
+        }  
+    }  
+    if(i >= len)  
+    {  
+        printf("无满足字符\n");  
+    }  
+} 
+  
+int main()  
+{  
+    char str[] = "a6arccdeff";  
+    findSingle(str,strlen(str));  
+    return 0;  
+}
 
 
 //4.模拟实现以下函数：
