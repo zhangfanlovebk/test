@@ -449,7 +449,7 @@ int main()
 //    }  
 //    return 0;  
 //}  
-//*以左下角开始查找 
+//   /*以左下角开始查找 
 //int find_num(int arr[][3],int rows,int cols,int key) 
 //{ 
 //    int row=rows-1; 
@@ -519,52 +519,255 @@ int main()
 //}
 
 //O(n)的时间复杂度，O(1)的空间复杂度
-#include <stdio.h>  
-#include <stdlib.h>  
-#include <string.h>  
-void findSingle(char *arr, int len)  
-{  
-    int hashtable[256] = {0};  
-    int i;
-    for(i=0;i<len;i++)
-	{
-        hashtable[arr[i]-'0']++;
-	}
-    for(i=0;i<len;i++)  
-    {  
-        if(hashtable[arr[i]-'0'] == 1)  
-        {  
-            printf("%c\n",arr[i]);  
-            break;  
-        }  
-    }  
-    if(i >= len)  
-    {  
-        printf("无满足字符\n");  
-    }  
-} 
-  
-int main()  
-{  
-    char str[] = "a6arccdeff";  
-    findSingle(str,strlen(str));  
-    return 0;  
-}
+//#include <stdio.h>  
+//#include <stdlib.h>  
+//#include <string.h>  
+//void findSingle(char *arr, int len)  
+//{  
+//    int hashtable[256] = {0};  
+//    int i;
+//    for(i=0;i<len;i++)
+//	{
+//        hashtable[arr[i]-'0']++;
+//	}
+//    for(i=0;i<len;i++)  
+//    {  
+//        if(hashtable[arr[i]-'0'] == 1)  
+//        {  
+//            printf("%c\n",arr[i]);  
+//            break;  
+//        }  
+//    }  
+//    if(i >= len)  
+//    {  
+//        printf("无满足字符\n");  
+//    }  
+//} 
+//  
+//int main()  
+//{  
+//    char str[] = "a6arccdeff";  
+//    findSingle(str,strlen(str));  
+//    return 0;  
+//}
 
 
 //4.模拟实现以下函数：
 //strcpy
+//从src地址开始且含有'\0'结束符的字符串复制到以dest开始的地址空间
+//#include<stdio.h>
+//#include<string.h>
+//#include<assert.h>
+//char* my_strcpy(char* dest, const char* src) //const使在函数中不能修改*src原先的值 
+//{
+//    char* strdest = dest;    //保存原始指针地址
+//    assert(dest);    //两次断言-->检验参数，增加代码健壮性 
+//    assert(src);
+//    while (*src)
+//    {
+//        *dest++ = *src++;
+//    }
+//    *dest = '\0';
+//    return strdest;
+//}
+//
+//int main()
+//{
+//	char arr1[]="hello";
+//	char arr2[10];
+//	char *ret=*my_strcpy(arr2,arr1);
+//	printf("%s\n",arr2);
+//	return 0;
+//}
 
 //strncpy
+//把src所指向的字符串中以src地址开始的前n个字节复制到dest所指的数组中，并返回dest
+//#include <stdio.h> 
+//  
+//int main()  
+//{  
+//    char *strata(char s1[],char s2[],int n);  
+//  
+//    char nam1[41]="das";  
+//    char nam2[41]="wo shi yi ge da sha bi";  
+//  
+//    strata(nam1,nam2,8);  
+//  
+//    puts(nam1);  
+//    return 0;  
+//}  
+//  
+//char *strata(char s1[],char s2[],int n)  
+//{  
+//    int i;  
+//    char *prt=s1;  
+//  
+//    if(n>strlen(s2))  
+//        return prt;  
+//    else  
+//    {  
+//        s2[n]='\0';  
+//        for(i=0;i<n;i++)  
+//            s1[i]=s2[i];  
+//    }  
+//} 
 
 //strcat
+//把src所指字符串添加到dest结尾处(覆盖dest结尾处的'\0')
+//#include <stdio.h>
+//#define MAXNUM 200
+//void mystrcat(char str1[],char str2[])
+//{
+//	int i,j;/*计算str1的长度，循环结束后i的值等于str1的长度加1*/
+//	for(i=0; str1 [i]!='\0';i++)/*在str1后添加str2的每个字符*/
+//	{
+//		;
+//	}
+//	for(j=0; str2 [j]!='\0';j++)/*最后一定要加上字符串结束符*/
+//	{
+//	  str1 [i+j]= str2 [j];
+//	}
+//	str1 [i+j]='\0';
+//}
+//
+///*void mystrcat(char *pstr1,char *pstr2)
+//{
+//	while(*pstr1)//将指针pstr1拨到字符串末尾
+//	{
+//		pstr1++;
+//	}
+//	while(*pstr1++=* pstr2++)//在pstr2后添加pstr2的每个字符，注意循环最后一次拷贝了'\0'
+//	{
+//		;
+//	}
+//}*/
+//
+//int main()
+//{
+//	char str1[MAXNUM],str2[MAXNUM];/*定义字符数组str1和str2，str1要能容纳连接后的字符串*/
+//	printf("\nPlease input str1:\n");
+//	gets(str1);
+//	printf("Please input str2:\n");
+//	gets(str2);
+//	mystrcat(str1,str2);
+//	printf("Ret str=%s\n",str1);
+//	return 0;
+//} 
 
 //strncat
+//把src所指字符串的前n个字符添加到dest结尾处
+
 
 //strcmp
+//比较两个字符串
+//若str1=str2，则返回零；若str1<str2，则返回负数；若str1>str2，则返回正数
+
 
 //strncmp
+//比较的两个字符串前n个字符（相等为0，不等比较asc值）
+
 
 //memcpy
+//从源src所指的内存地址的起始位置开始拷贝n个字节到目标dest所指的内存地址的起始位置中
+//#include <stdio.h>  
+//#include <string.h> 
+//
+//void * my_memcpy(void * dst, const void * src, int count)  
+//{  
+//    void *ret = dst;  
+//    while (count--)  
+//    {  
+//        *(char *)dst = *(char *)src;  
+//        dst=(char *)dst+1;  
+//        src=(char *)src+1;  
+//    }  
+//    return ret;  
+//} 
+//
+///*void *my_memcpy(void *dest, const void *src, size_t n)
+//{
+//    char *d = dest;
+//    const char *s = src;
+//    int *di;
+//    const int *si;
+//    int r = n % 4;
+//    
+//    while (r--)
+//        *d++ = *s++;
+//    di = (int *)d;
+//    si = (const int*)s;
+//    n /= 4;
+//    while (n--)
+//        *di++ = *si++;
+//
+//    return dest;
+//}*/
+//
+//int main()  
+//{  
+//    char p[] = "abcdef";
+//    char *a = "123456";  
+//    my_memcpy(p, a, 3);
+//    printf("%s\n", p);  //123def
+//    return 0;  
+//}
+
 
 //memmove
+//由src所指内存区域复制count个字节到dest所指内存区域
+
+//#include <stdio.h>  
+//#include <assert.h>  
+//#include <string.h> 
+//
+//void * memmove(void * dst, const void * src, int count)  
+//{  
+//    void * ret = dst;  
+//    assert(dst);  
+//    assert(src);  
+//    if (dst <= src || (char *)dst >= ((char *)src + count))//正常情况不发生重叠，从低到高  
+//    {  
+//        while (count--)   
+//        {  
+//            *(char *)dst = *(char *)src;  
+//            dst = (char *)dst + 1;  
+//            src = (char *)src + 1;  
+//        }  
+//    }  
+//    else                                                   //发生重叠，从低到高  
+//    {  
+//        dst = (char *)dst + count - 1;  
+//        src = (char *)src + count - 1;  
+//        while (count--)   
+//        {  
+//            *(char *)dst = *(char *)src;  
+//            dst = (char *)dst - 1;  
+//            src = (char *)src - 1;  
+//        }  
+//    }  
+//    return ret;  
+//} 
+//
+///*void *mymemmove(void *dest, const void *src, size_t n)
+//{
+//    char temp[10];
+//    int i;
+//    char *d = dest;
+//    const char *s = src;
+//
+//    for (i = 0; i < n; i++)
+//        temp[i] = s[i];
+//    for (i = 0; i < n; i++)
+//        d[i] = temp[i];
+//
+//    return dest;
+//}*/
+//
+//int main()  
+//{  
+//    char p[] = "hello";  
+//    char *q = "world";  
+//    memmove(p, q,strlen(q)+1 );  
+//    printf("%s\n", p);  //world
+//    return 0;  
+//} 
