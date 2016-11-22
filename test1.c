@@ -573,45 +573,45 @@ int main()
 //
 //int main()
 //{
-//	char arr1[]="hello";
+//	char arr1[]="hello123";
 //	char arr2[10];
-//	char *ret=*my_strcpy(arr2,arr1);
-//	printf("%s\n",arr2);
+//	//char *ret=*my_strcpy(arr2,arr1);
+//	printf("%s\n",my_strcpy(arr2,arr1));
 //	return 0;
 //}
-
+//
 //strncpy
 //把src所指向的字符串中以src地址开始的前n个字节复制到dest所指的数组中，并返回dest
-//#include <stdio.h> 
-//  
-//int main()  
-//{  
-//    char *strata(char s1[],char s2[],int n);  
-//  
-//    char nam1[41]="das";  
-//    char nam2[41]="wo shi yi ge da sha bi";  
-//  
-//    strata(nam1,nam2,8);  
-//  
-//    puts(nam1);  
-//    return 0;  
-//}  
-//  
-//char *strata(char s1[],char s2[],int n)  
+//#include <stdio.h>
+//#include <string.h>
+//char *mystrncpy(char s1[],char s2[],int n)  
 //{  
 //    int i;  
-//    char *prt=s1;  
-//  
-//    if(n>strlen(s2))  
-//        return prt;  
+//    char *p=s1;
+//    if(n>strlen(s2))
+//	{
+//        return p;
+//	}
 //    else  
 //    {  
-//        s2[n]='\0';  
-//        for(i=0;i<n;i++)  
-//            s1[i]=s2[i];  
+//        //s2[n]='\0';  
+//        for(i=0;i<n;i++)
+//		{
+//            s1[i]=s2[i];
+//		}
 //    }  
-//} 
-
+//}
+//
+//int main()  
+//{
+//    char s1[50]="hello";  
+//    char s2[50]="welcome to my home";  
+//    mystrncpy(s1,s2,7);  
+//    puts(s1);
+//    return 0;  
+//}  
+//
+//
 //strcat
 //把src所指字符串添加到dest结尾处(覆盖dest结尾处的'\0')
 //#include <stdio.h>
@@ -630,17 +630,17 @@ int main()
 //	str1 [i+j]='\0';
 //}
 //
-///*void mystrcat(char *pstr1,char *pstr2)
-//{
-//	while(*pstr1)//将指针pstr1拨到字符串末尾
-//	{
-//		pstr1++;
-//	}
-//	while(*pstr1++=* pstr2++)//在pstr2后添加pstr2的每个字符，注意循环最后一次拷贝了'\0'
-//	{
-//		;
-//	}
-//}*/
+////void mystrcat(char *pstr1,char *pstr2)
+////{
+////	while(*pstr1)//将指针pstr1拨到字符串末尾
+////	{
+////		pstr1++;
+////	}
+////	while(*pstr1++=* pstr2++)//在pstr2后添加pstr2的每个字符，注意循环最后一次拷贝了'\0'
+////	{
+////		;
+////	}
+////}
 //
 //int main()
 //{
@@ -653,20 +653,132 @@ int main()
 //	printf("Ret str=%s\n",str1);
 //	return 0;
 //} 
-
+//
 //strncat
 //把src所指字符串的前n个字符添加到dest结尾处
-
-
+//#include <stdio.h>
+//#include <assert.h>  
+//char *mystrncat(char *dest,const char *src,int n)  
+//{  
+//     char *strDest=dest;  
+//     assert((dest!=NULL)&&(src!=NULL));  
+//     while(*dest !='\0')  
+//     {  
+//         dest++;  
+//     }  
+//     while(n && ((*dest++ = *src++)!='\0'))  
+//     {  
+//         n--;  
+//     }  
+//     *dest='\0';  
+//     return strDest;  
+//}
+//
+//int main(void)  
+//{  
+//    char d[50]="hello ! ";  
+//    char *s="everyone ,let go !"; 
+//    /*　 
+//    s字符串中只有前n个字符被追加到d字符串，复制过来的s字符串的第一个字符覆盖了 
+//    d字符串结尾的空字符。s字符串中的空字符及其后的任何字符都不会被复制，并且追加 
+//    一个空字符到所得结果后面。返回值是d。 
+//    */  
+//    mystrncat(d,s,8);  
+//    printf("%d\n",strlen(d));  
+//    printf("%s\n",d);  
+//    getch();  
+//    return 0;  
+//} 
+//
 //strcmp
 //比较两个字符串
 //若str1=str2，则返回零；若str1<str2，则返回负数；若str1>str2，则返回正数
-
-
+//#include <stdio.h>
+//#include <assert.h>
+//int mystrcmp(const char *str1, const char *str2)  
+//{  
+//    int i = 0;  
+//    while(str1[i] != '\0' && str2[i] != '\0' && str1[i] == str2[i])  
+//    {  
+//        i++;  
+//    }  
+//    return (str1[i] == str2[i] ? 0 : (str1[i] > str2[i] ? 1 : -1));  
+//}
+//
+////int mystrcmp(const char *str1,const char *str2)
+////{
+////	assert(str1);
+////	assert(str2);
+////	while (*str1 != '\0' && *str2 != '\0')
+////	{
+////		if (*str1 == *str2)
+////		{
+////			str1++, str2++;
+////		}
+////		else if ( *str1 > *str2 )
+////		{
+////			return 1;
+////		}
+////		else
+////		{
+////			return -1;
+////		}
+////	}
+////	if ( *str1 != '\0' && *str2 == '\0')
+////	{
+////		return 1;
+////	}
+////	if ( *str1 == '\0' && *str2 != '\0')
+////	{
+////		return -1;
+////	}
+////	return 0;
+////}
+//
+//int main ()
+//{
+//	char *str1="abcde";
+//	char *str2="abcde";
+//	printf("%d\n",mystrcmp(str1,str2));
+//	return 0;
+//}
+//
 //strncmp
 //比较的两个字符串前n个字符（相等为0，不等比较asc值）
-
-
+//#include<stdio.h>
+//#include<assert.h>
+//int mystrncmp(const char *s1,const char *s2,int n)
+//{
+//	assert((s1!=NULL)&&(s2!=NULL));
+//	while(*s1!='\0'&&*s2!='\0'&&n)//字符串前面部分都相同
+//	{
+//		if(*s1-*s2>0)
+//			return 1;
+//		if(*s1-*s2<0)
+//			return -1;
+//		s1++;
+//		s2++;
+//		n++;
+//	}
+//	if(*s1=='\0'&&*s2!='\0')//谁先为'\0',谁就小
+//	{
+//		return -1;
+//	}
+//	if(*s2=='\0'&&*s1!='\0')
+//	{
+//		return 1;
+//	}
+//	return 0;              //同时为'\0'  
+//}
+//
+//int main()
+//{
+//	char *str1="ab3cde";
+//	char *str2="ab7cde";
+//	printf("%d\n",mystrncmp(str1,str2,3));
+//	return 0;
+//}
+//
 //memcpy
 //从源src所指的内存地址的起始位置开始拷贝n个字节到目标dest所指的内存地址的起始位置中
 //#include <stdio.h>  
@@ -684,24 +796,24 @@ int main()
 //    return ret;  
 //} 
 //
-///*void *my_memcpy(void *dest, const void *src, size_t n)
-//{
-//    char *d = dest;
-//    const char *s = src;
-//    int *di;
-//    const int *si;
-//    int r = n % 4;
-//    
-//    while (r--)
-//        *d++ = *s++;
-//    di = (int *)d;
-//    si = (const int*)s;
-//    n /= 4;
-//    while (n--)
-//        *di++ = *si++;
-//
-//    return dest;
-//}*/
+////void *my_memcpy(void *dest, const void *src, size_t n)
+////{
+////    char *d = dest;
+////    const char *s = src;
+////    int *di;
+////    const int *si;
+////    int r = n % 4;
+////    
+////    while (r--)
+////        *d++ = *s++;
+////    di = (int *)d;
+////    si = (const int*)s;
+////    n /= 4;
+////    while (n--)
+////        *di++ = *si++;
+////
+////    return dest;
+////}
 //
 //int main()  
 //{  
@@ -711,11 +823,11 @@ int main()
 //    printf("%s\n", p);  //123def
 //    return 0;  
 //}
-
-
+//
+//
 //memmove
 //由src所指内存区域复制count个字节到dest所指内存区域
-
+//
 //#include <stdio.h>  
 //#include <assert.h>  
 //#include <string.h> 
@@ -748,20 +860,20 @@ int main()
 //    return ret;  
 //} 
 //
-///*void *mymemmove(void *dest, const void *src, size_t n)
-//{
-//    char temp[10];
-//    int i;
-//    char *d = dest;
-//    const char *s = src;
-//
-//    for (i = 0; i < n; i++)
-//        temp[i] = s[i];
-//    for (i = 0; i < n; i++)
-//        d[i] = temp[i];
-//
-//    return dest;
-//}*/
+////void *mymemmove(void *dest, const void *src, size_t n)
+////{
+////    char temp[10];
+////    int i;
+////    char *d = dest;
+////    const char *s = src;
+////
+////    for (i = 0; i < n; i++)
+////        temp[i] = s[i];
+////    for (i = 0; i < n; i++)
+////        d[i] = temp[i];
+////
+////    return dest;
+////}
 //
 //int main()  
 //{  
