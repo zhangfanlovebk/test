@@ -1,4 +1,5 @@
 #define CRT_SECURE_NO_WARNINGS 1
+#pragma warning(disable:4996)
 
 //#include <stdio.h>
 //int main ()
@@ -883,3 +884,126 @@ int main()
 //    printf("%s\n", p);  //world
 //    return 0;  
 //} 
+
+//1.算法实现选择排序
+//#include <stdio.h>
+//void select_(int arr[],int num)
+//{
+//	int m,n,k,tmp;
+//	for(m=0;m<num;m++)
+//	{
+//		tmp=arr[m];
+//		k=m;
+//		for(n=m+1;n<num;n++)
+//		{
+//			if(arr[n]<tmp)
+//			{
+//				tmp=arr[n];
+//				k=n;
+//			}
+//		}
+//		if(k!=m)
+//		{
+//			tmp=arr[k];
+//			arr[k]=arr[m];
+//			arr[m]=tmp;
+//		}
+//	}
+//}
+//
+//int main ()
+//{
+//	int arr[10]={2,5,6,9,-55,3,47,8,22,43};
+//	int i=0;
+//	select_(arr,10);
+//	for(i=0;i<10;i++)
+//	{
+//		printf("%d ",arr[i]);
+//	}
+//	printf("\n");
+//	return 0;
+//}
+
+//2.递归实现n的k次方
+//#include <stdio.h>  
+//int my_pow(int n,int k)  
+//{  
+//    if(k == 0)  
+//    {  
+//        return 1;  
+//    }  
+//    if(k >= 1)  
+//    {  
+//        return (n*my_pow(n,k-1));  
+//    }  
+//}
+//
+//int main(void)  
+//{
+//	int x,y;
+//	scanf("%d%d",&x,&y);
+//	printf("%d\n",my_pow(x,y));  
+//    return 0;  
+//} 
+
+//3.用递归方法求一个数各个位数字之和
+//#include<stdio.h>
+//int main()
+//{
+//    int n,s=0;
+//    scanf("%d",&n);
+//    while(n)
+//    {
+//        s+=n%10;
+//        n/=10;
+//    }
+//    printf("s=%d\n",s);
+//    return 0;
+//}
+
+
+//#include <stdio.h>  
+//int Sum(int n)     
+//{  
+//    int num = 0;  
+//    if( n == 0)  
+//    {  
+//        return num;  
+//    }  
+//    else
+//	{    
+//		num += n%10;  
+//		n /= 10; 
+//	}
+//    return (num + Sum(n));  
+//}  
+//  
+//int main()  
+//{  
+//    int n;  
+//    printf("请输入一个非负整数：");  
+//    scanf("%d",&n);  
+//    printf("%d\n",Sum(n));  
+//    return 0;  
+//}
+
+//求s=a+aa+aaa+aaaa+aaaaa(其中a是一个数字)
+#include <stdio.h>
+#include <math.h>
+int main ()
+{
+	int n=0,s, a=0,s2=0;
+	int i,  k;
+	int s1=0;
+	printf("请输入a和n：\n");
+	scanf("%d%d",&a,&n);
+	for(i=0;i<n;i++)
+	{
+		k=pow(10,i);
+		s1+=k;
+		s2+=s1;
+	}
+	s=a*s2;
+	printf("s=%d",s);
+	return 0;
+}
