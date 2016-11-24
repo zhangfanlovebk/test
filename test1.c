@@ -987,23 +987,49 @@ int main()
 //    return 0;  
 //}
 
-//求s=a+aa+aaa+aaaa+aaaaa(其中a是一个数字)
+//3. 求10 个整数中最大值。
+//#include <stdio.h>
+//int main()
+//{
+//	 int i, MAX,a[10];
+//	 printf("请输入十个整数:\n");
+//	 for(i=0; i<10; i++)
+//	 {
+//		 scanf("%d", &a[i]);
+//	 }
+//	 MAX = a[0];
+//	 for(i=0; i<10; i++)
+//	 {
+//		if(a[i] > MAX)
+//		{
+//			MAX = a[i];
+//		}
+//	 }
+//	 printf("十个数中最大值为：%d\n", MAX);
+//	 return 0;
+//}
+//4. 写一个函数返回参数二进制中 1 的个数
 #include <stdio.h>
-#include <math.h>
-int main ()
+int count_one_bits(unsigned int value)
 {
-	int n=0,s, a=0,s2=0;
-	int i,  k;
-	int s1=0;
-	printf("请输入a和n：\n");
-	scanf("%d%d",&a,&n);
-	for(i=0;i<n;i++)
-	{
-		k=pow(10,i);
-		s1+=k;
-		s2+=s1;
-	}
-	s=a*s2;
-	printf("s=%d",s);
+	int count =0;
+	while(value)
+	  {
+	   if(value%2==1)
+		{
+		  count++;
+		 }
+	   value/=2;
+	  }
+	return count;
+}
+
+int main()
+{
+	unsigned int a=0;
+	int ret=0;
+	scanf("%d",&a);
+	ret=count_one_bits(a);
+	printf("count=%d\n",ret);
 	return 0;
 }
