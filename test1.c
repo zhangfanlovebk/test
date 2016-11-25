@@ -987,7 +987,7 @@ int main()
 //    return 0;  
 //}
 
-//3. 求10 个整数中最大值。
+//1. 求10 个整数中最大值。
 //#include <stdio.h>
 //int main()
 //{
@@ -1008,28 +1008,149 @@ int main()
 //	 printf("十个数中最大值为：%d\n", MAX);
 //	 return 0;
 //}
-//4. 写一个函数返回参数二进制中 1 的个数
-#include <stdio.h>
-int count_one_bits(unsigned int value)
-{
-	int count =0;
-	while(value)
-	  {
-	   if(value%2==1)
-		{
-		  count++;
-		 }
-	   value/=2;
-	  }
-	return count;
-}
 
+//2. 写一个函数返回参数二进制中 1 的个数
+//#include <stdio.h>
+//int count_one_bits(unsigned int value)
+//{
+//	int count =0;
+//	while(value)
+//	  {
+//	   if(value%2==1)
+//		{
+//		  count++;
+//		 }
+//	   value/=2;
+//	  }
+//	return count;
+//}
+//
+//int main()
+//{
+//	unsigned int a=0;
+//	int ret=0;
+//	scanf("%d",&a);
+//	ret=count_one_bits(a);
+//	printf("count=%d\n",ret);
+//	return 0;
+//}
+
+//1.将数组A中的内容和数组B中的内容进行交换。（数组一样大）
+//#include <stdio.h>
+//int main()
+//{
+//	int a[10]={1,2,3,4,5,6,7,8,9,10};
+//	int b[10]={10,9,8,7,6,5,4,3,2,1};
+//	int i=0;
+//	for(i=0;i<sizeof(a)/sizeof(a[0]);i++)
+//	{
+//		a[i]=a[i]+b[i];
+//		b[i]=a[i]-b[i];
+//		a[i]=a[i]-b[i];
+//	}
+//	printf("a[10]=");
+//	for(i=0;i<sizeof(a)/sizeof(a[0]);i++)
+//	printf("%d ",a[i]);
+//	printf("\nb[10]=");
+//	for(i=0;i<sizeof(a)/sizeof(a[0]);i++)
+//	printf("%d ",b[i]);
+//    return 0;
+//}
+
+//2.获取一个数二进制序列中所有的偶数位和奇数位，分别输出二进制序列
+    //（先求出32位比特位，在循环每次减2，分别输出奇、偶序列。方法二）
+//方法一
+//#include <stdio.h>
+//int main()
+//{
+//     int a,i=0;
+//     int arr1[16],arr2[16];
+//     scanf("%d",&a);
+//     while(i<32)
+//     {
+//          arr1[i/2]=a%2;
+//          a=a>>1;
+//          i++;
+//          arr2[(i-1)/2]=a%2;
+//          a=a>>1;
+//          i++;
+//     }
+//     printf("奇数列二进制序列为:");
+//     for(i=15;i>=0;i--)
+//     {   
+//          printf("%d ",arr1[i]);
+//     }
+//     printf("\n偶数列二进制序列为:");
+//     for(i=15;i>=0;i--)
+//     {
+//          printf("%d ",arr2[i]);
+//     }
+//	 printf("\n");
+//	 return 0;
+//}
+//
+//方法二（推荐）
+#include <stdio.h>
 int main()
-{
-	unsigned int a=0;
-	int ret=0;
-	scanf("%d",&a);
-	ret=count_one_bits(a);
-	printf("count=%d\n",ret);
+{	
+	int a[32];						//整形有32个比特位；
+	int i = 0;
+	int data = 0;
+	printf("please enter data:");
+	scanf("%d", &data);
+	for (i = 0; i < 32; i++)
+	{
+		a[i] = data % 2;			//求比特位；
+		data /= 2;
+	}
+	printf("输出偶数序列：\n");
+	for (i = 31; i >= 0; i -= 2)	//i = 31;偶数的最高位；
+	{
+		printf("%d ",a[i]);
+	}
+	printf("\n");
+	printf("输出奇数序列：\n");
+	for (i = 30; i >= 0; i -= 2)	//i = 30;奇数的最高位；
+	{
+		printf("%d ", a[i]);
+	}
+	printf("\n");
 	return 0;
 }
+
+
+//方法三
+//#include<stdio.h>  
+//#include<stdlib.h>  
+//int main()  
+//{  
+//    int num, i;  
+//    printf("please enter a number:\n");  
+//    scanf("%d", &num);  
+//    printf("偶数序列为:\n");  
+//    for (i = 31; i >= 1; i -= 2)  
+//    {  
+//        if ((num >> i) & 0x1)  //按位与（有0为0）每循环一次打印一个
+//        {  
+//            printf("1 ");  
+//        }  
+//        else
+//		{
+//            printf("0 ");
+//		}
+//    }  
+//    printf("\n奇数序列为:\n");  
+//    for (i = 30; i >= 0; i -= 2)  
+//    {  
+//        if ((num >> i) & 0x1)  
+//        {  
+//            printf("1 ");  
+//        }  
+//        else
+//		{
+//            printf("0 ");
+//		}
+//    }  
+//    printf("\n");  
+//    return 0;  
+//}
