@@ -1090,33 +1090,33 @@ int main()
 //}
 //
 //方法二（推荐）
-#include <stdio.h>
-int main()
-{	
-	int a[32];						//整形有32个比特位；
-	int i = 0;
-	int data = 0;
-	printf("please enter data:");
-	scanf("%d", &data);
-	for (i = 0; i < 32; i++)
-	{
-		a[i] = data % 2;			//求比特位；
-		data /= 2;
-	}
-	printf("输出偶数序列：\n");
-	for (i = 31; i >= 0; i -= 2)	//i = 31;偶数的最高位；
-	{
-		printf("%d ",a[i]);
-	}
-	printf("\n");
-	printf("输出奇数序列：\n");
-	for (i = 30; i >= 0; i -= 2)	//i = 30;奇数的最高位；
-	{
-		printf("%d ", a[i]);
-	}
-	printf("\n");
-	return 0;
-}
+//#include <stdio.h>
+//int main()
+//{	
+//	int a[32];						//整形有32个比特位；
+//	int i = 0;
+//	int data = 0;
+//	printf("please enter data:");
+//	scanf("%d", &data);
+//	for (i = 0; i < 32; i++)
+//	{
+//		a[i] = data % 2;			//求比特位；
+//		data /= 2;
+//	}
+//	printf("输出偶数序列：\n");
+//	for (i = 31; i >= 0; i -= 2)	//i = 31;偶数的最高位；
+//	{
+//		printf("%d ",a[i]);
+//	}
+//	printf("\n");
+//	printf("输出奇数序列：\n");
+//	for (i = 30; i >= 0; i -= 2)	//i = 30;奇数的最高位；
+//	{
+//		printf("%d ", a[i]);
+//	}
+//	printf("\n");
+//	return 0;
+//}
 
 
 //方法三
@@ -1153,4 +1153,50 @@ int main()
 //    }  
 //    printf("\n");  
 //    return 0;  
+//}
+
+//1.将三个数按从大到小输出
+#include<stdio.h>
+int main()
+{
+	int a,b,c,n;
+	printf("请输入三个数:\n");
+	scanf("%d %d %d",&a,&b,&c);
+	if(a<b)
+	  {
+		n=a;
+		a=b;
+		b=n;
+	   }
+	if(a<c)
+	  {
+		n=a;
+		a=c;
+		c=n;
+	   }
+	if(b<c)
+	  {
+		n=b;
+		b=c;
+		c=n;
+	   }
+	printf("三个数从大到小为：\n");
+	printf("%d %d %d\n",a,b,c);
+    return 0;
+}
+
+//2.求两个数的最大公约数。
+//#include<stdio.h>
+//void main()
+//{
+//	int m,n,p;
+//	printf("请输入两个数字:\n");
+//	scanf("%d%d",&m,&n);
+//	while(m%n != 0)
+//	   {
+//		  p = m%n;
+//		  m = n;
+//		  n = p;
+//	   }
+//	printf("最大公约数是%d\n",n);
 //}
