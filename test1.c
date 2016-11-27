@@ -1156,34 +1156,34 @@ int main()
 //}
 
 //1.将三个数按从大到小输出
-#include<stdio.h>
-int main()
-{
-	int a,b,c,n;
-	printf("请输入三个数:\n");
-	scanf("%d %d %d",&a,&b,&c);
-	if(a<b)
-	  {
-		n=a;
-		a=b;
-		b=n;
-	   }
-	if(a<c)
-	  {
-		n=a;
-		a=c;
-		c=n;
-	   }
-	if(b<c)
-	  {
-		n=b;
-		b=c;
-		c=n;
-	   }
-	printf("三个数从大到小为：\n");
-	printf("%d %d %d\n",a,b,c);
-    return 0;
-}
+//#include<stdio.h>
+//int main()
+//{
+//	int a,b,c,n;
+//	printf("请输入三个数:\n");
+//	scanf("%d %d %d",&a,&b,&c);
+//	if(a<b)
+//	  {
+//		n=a;
+//		a=b;
+//		b=n;
+//	   }
+//	if(a<c)
+//	  {
+//		n=a;
+//		a=c;
+//		c=n;
+//	   }
+//	if(b<c)
+//	  {
+//		n=b;
+//		b=c;
+//		c=n;
+//	   }
+//	printf("三个数从大到小为：\n");
+//	printf("%d %d %d\n",a,b,c);
+//    return 0;
+//}
 
 //2.求两个数的最大公约数。
 //#include<stdio.h>
@@ -1200,3 +1200,18 @@ int main()
 //	   }
 //	printf("最大公约数是%d\n",n);
 //}
+
+// 输出一个整数的每一位
+#include<stdio.h>
+int main()
+{
+	int num = 0;
+	printf("请输入一个非负整数：");
+	scanf("%d", &num);
+	while (num)
+	  {
+	   printf("%d\n",num%10);
+	   num = num/10;
+	  }
+	return 0;
+}
