@@ -1202,16 +1202,42 @@ int main()
 //}
 
 // 输出一个整数的每一位
+//#include<stdio.h>
+//int main()
+//{
+//	int num = 0;
+//	printf("请输入一个非负整数：");
+//	scanf("%d", &num);
+//	while (num)
+//	  {
+//	   printf("%d\n",num%10);
+//	   num = num/10;
+//	  }
+//	return 0;
+//}
+
+//计算1/1-1/2+1/3-1/4+1/5 …… + 1/99 - 1/100 的值
 #include<stdio.h>
 int main()
 {
-	int num = 0;
-	printf("请输入一个非负整数：");
-	scanf("%d", &num);
-	while (num)
-	  {
-	   printf("%d\n",num%10);
-	   num = num/10;
-	  }
+	double sum;
+	int i;
+	for(sum=0,i=1;i<=100;i++)
+	{
+		 if(i%2==1)
+		 {
+			 sum+=1.0/i;
+		 }
+		 else if (i%2==0)
+		 {
+			 sum-=1.0/i;
+		 }
+	}
+	printf("result：%lf\n",sum);
 	return 0;
 }
+
+//1.使用qsort排序一个整形数组，一个浮点型数组，一个字符串数组。
+
+
+//2.自己实现一个bubble_sort（冒泡排序），可以完成不同类型数据的排序。
