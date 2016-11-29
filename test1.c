@@ -1217,23 +1217,45 @@ int main()
 //}
 
 //计算1/1-1/2+1/3-1/4+1/5 …… + 1/99 - 1/100 的值
-#include<stdio.h>
+//#include<stdio.h>
+//int main()
+//{
+//	double sum;
+//	int i;
+//	for(sum=0,i=1;i<=100;i++)
+//	{
+//		 if(i%2==1)
+//		 {
+//			 sum+=1.0/i;
+//		 }
+//		 else if (i%2==0)
+//		 {
+//			 sum-=1.0/i;
+//		 }
+//	}
+//	printf("result：%lf\n",sum);
+//	return 0;
+//}
+
+//编写程序数一下 1到 100 的所有整数中出现多少次数字 9
+#include <stdio.h>
 int main()
 {
-	double sum;
-	int i;
-	for(sum=0,i=1;i<=100;i++)
-	{
-		 if(i%2==1)
+	int n=1;
+	int count=0;            /*count是数字9出现的个数*/
+	while(n<100)
+	{          
+		if(n%10==9)/*个位上含数字9的*/
+		{
+			count++;
+		}
+		 if(n-n%10==90) /*十位上含数字9的个数*/
 		 {
-			 sum+=1.0/i;
+			 count++;
 		 }
-		 else if (i%2==0)
-		 {
-			 sum-=1.0/i;
-		 }
+		 n++;
 	}
-	printf("result：%lf\n",sum);
+	printf("9出现的次数：%d\n",count);
 	return 0;
 }
 
