@@ -1238,28 +1238,89 @@ int main()
 //}
 
 //编写程序数一下 1到 100 的所有整数中出现多少次数字 9
-#include <stdio.h>
-int main()
-{
-	int n=1;
-	int count=0;            /*count是数字9出现的个数*/
-	while(n<100)
-	{          
-		if(n%10==9)/*个位上含数字9的*/
-		{
-			count++;
-		}
-		 if(n-n%10==90) /*十位上含数字9的个数*/
-		 {
-			 count++;
-		 }
-		 n++;
-	}
-	printf("9出现的次数：%d\n",count);
-	return 0;
-}
+//#include <stdio.h>
+//int main()
+//{
+//	int n=1;
+//	int count=0;            /*count是数字9出现的个数*/
+//	while(n<100)
+//	{          
+//		if(n%10==9)/*个位上含数字9的*/
+//		{
+//			count++;
+//		}
+//		 if(n-n%10==90) /*十位上含数字9的个数*/
+//		 {
+//			 count++;
+//		 }
+//		 n++;
+//	}
+//	printf("9出现的次数：%d\n",count);
+//	return 0;
+//}
 
 //1.使用qsort排序一个整形数组，一个浮点型数组，一个字符串数组。
 
 
 //2.自己实现一个bubble_sort（冒泡排序），可以完成不同类型数据的排序。
+#include <stdio.h>
+#include <assert.h>
+int intCmp(void *x, void *y)
+{
+	int *_x = (int *)x;
+	int *_y = (int *)y;
+	return *_x - *_y;
+}
+
+void bubbleSort(void *data, int nums, int width, int (*cmp)(void *, void*))
+{
+	int i = 0;
+	assert(data);
+	for (i = 0; i < nums - 1; i++)
+	{
+		int j = 0;
+		int flag = 0;
+		char *start = (char*)data;
+		for (j = 0; j < nums - 1 - i; j++)
+		{
+			if ( cmp(start, start+width) > 0 )
+			{
+				int k = 0;
+				for (k = 0; k < width; k++)
+				{
+					start[k] ^= start[k+width];
+					start[k + width] ^= start[k];
+					start[k] ^= start[k + width];
+				}
+				flag = 1;
+			}
+			start += width;
+		}
+		if (!flag)
+		{
+			break;
+		}
+	}
+}
+
+void show(int arr[], int len)
+{
+	
+	int i = 0;
+	assert(arr);
+	for (; i < len; i++)
+	{
+		printf("%d ", arr[i]);
+	}
+	printf("\n");
+}
+
+int main()
+{
+	int arr[] = {45,4,3,23,34,4,45,5,6,75,68,9}; 
+	int len = sizeof(arr) / sizeof(arr[0]);
+	show(arr, len);
+	bubbleSort(arr, len, sizeof(int), intCmp);
+	show(arr, len);
+	return 0;
+}
