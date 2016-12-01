@@ -1263,64 +1263,104 @@ int main()
 
 
 //2.自己实现一个bubble_sort（冒泡排序），可以完成不同类型数据的排序。
+//#include <stdio.h>
+//#include <assert.h>
+//int intCmp(void *x, void *y)
+//{
+//	int *_x = (int *)x;
+//	int *_y = (int *)y;
+//	return *_x - *_y;
+//}
+//
+//void bubbleSort(void *data, int nums, int width, int (*cmp)(void *, void*))
+//{
+//	int i = 0;
+//	assert(data);
+//	for (i = 0; i < nums - 1; i++)
+//	{
+//		int j = 0;
+//		int flag = 0;
+//		char *start = (char*)data;
+//		for (j = 0; j < nums - 1 - i; j++)
+//		{
+//			if ( cmp(start, start+width) > 0 )
+//			{
+//				int k = 0;
+//				for (k = 0; k < width; k++)
+//				{
+//					start[k] ^= start[k+width];
+//					start[k + width] ^= start[k];
+//					start[k] ^= start[k + width];
+//				}
+//				flag = 1;
+//			}
+//			start += width;
+//		}
+//		if (!flag)
+//		{
+//			break;
+//		}
+//	}
+//}
+//
+//void show(int arr[], int len)
+//{
+//	
+//	int i = 0;
+//	assert(arr);
+//	for (; i < len; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	printf("\n");
+//}
+//
+//int main()
+//{
+//	int arr[] = {45,4,3,23,34,4,45,5,6,75,68,9}; 
+//	int len = sizeof(arr) / sizeof(arr[0]);
+//	show(arr, len);
+//	bubbleSort(arr, len, sizeof(int), intCmp);
+//	show(arr, len);
+//	return 0;
+//}
+
+
+//结构体内存对齐
+//结构体内存对其规则：
+//1.第一个成员在与结构体变量偏移量为0的地址处。
+//2.其他成员变量要对齐到某个数字（对齐数）的整数倍的地址处。
+//    //对齐数 = 编译器默认的一个对齐数 与 该成员大小的较小值。
+//    VS中默认的值为8
+//    linux中的默认值为4
+//3.结构体总大小为最大对齐数（每个成员变量除了第一个成员都有一个对齐数）的整数倍。
+//4.如果嵌套了结构体的情况，嵌套的结构体对齐到自己的最大对齐数的
+//整数倍处，结构体的整体大小就是所有最大对齐数（含嵌套结构体的对
+//齐数）的整数倍
 #include <stdio.h>
-#include <assert.h>
-int intCmp(void *x, void *y)
-{
-	int *_x = (int *)x;
-	int *_y = (int *)y;
-	return *_x - *_y;
-}
+#pragma pack(4)  //#pragma pack (value)时的指定对齐值value。
+#pragma pack()   //#pragma pack () 取消指定对齐，恢复缺省对齐
 
-void bubbleSort(void *data, int nums, int width, int (*cmp)(void *, void*))
-{
-	int i = 0;
-	assert(data);
-	for (i = 0; i < nums - 1; i++)
-	{
-		int j = 0;
-		int flag = 0;
-		char *start = (char*)data;
-		for (j = 0; j < nums - 1 - i; j++)
-		{
-			if ( cmp(start, start+width) > 0 )
-			{
-				int k = 0;
-				for (k = 0; k < width; k++)
-				{
-					start[k] ^= start[k+width];
-					start[k + width] ^= start[k];
-					start[k] ^= start[k + width];
-				}
-				flag = 1;
-			}
-			start += width;
-		}
-		if (!flag)
-		{
-			break;
-		}
-	}
-}
+//16 4
+struct A{
+    char a;//1
+    double b;//8 和上一个对其需上一个开辟7,8+8=16
+    int c;//4 （16是）4的整数倍，16+4=20（除过第一个最大为8,8的最小倍数24）
+};
 
-void show(int arr[], int len)
-{
-	
-	int i = 0;
-	assert(arr);
-	for (; i < len; i++)
-	{
-		printf("%d ", arr[i]);
-	}
-	printf("\n");
-}
+struct B{
+    int a1;//4
+    char b1;//1 可对齐4+1=5
+    double c1;//8 上一个5不是8的倍数，最小为8 ；8+8=16
+    struct A obj;//24 可对齐16+24=40
+    struct A *objp;//4 可对齐40+4=44
+    struct A objarr[2];//48 上一个44不是8的倍数，最小为48 ；48+48=96
+    char *d1;//4 可对齐96+4=100（100不是8的倍数，最小为104）
+};
 
 int main()
 {
-	int arr[] = {45,4,3,23,34,4,45,5,6,75,68,9}; 
-	int len = sizeof(arr) / sizeof(arr[0]);
-	show(arr, len);
-	bubbleSort(arr, len, sizeof(int), intCmp);
-	show(arr, len);
-	return 0;
+	struct B obj;
+    printf("%d %d\n", sizeof(struct A), sizeof(struct B));//24  104
 }
+
