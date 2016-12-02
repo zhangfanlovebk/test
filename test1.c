@@ -1260,6 +1260,56 @@ int main()
 //}
 
 //1.使用qsort排序一个整形数组，一个浮点型数组，一个字符串数组。
+#include <stdio.h>  
+#include <stdlib.h>
+#include <string.h>
+
+int int_cmp ( const void *a , const void *b ) //整形数组排序
+{ 
+	return *(int *)a - *(int *)b; 
+} 
+
+int dou_cmp( const void *a , const void *b ) //浮点型数组排序
+{ 
+	return *(double *)a > *(double *)b ? 1 : -1; 
+} 
+
+int str_cmp(const void * a,const void *b) //字符串数组排序  
+{  
+    return strcmp((char *)a,(char *)b) ; //字典序从小到大  
+    //return strcmp((char *)b,(char *)a) ; //字典序从大到小  
+}
+//int str_cmp( const void *a , const void *b ) 
+//{ 
+//	return *(char *)a - *(char *)b; 
+//} 
+
+int main()  
+{   
+	int i =0;
+    int s1[6]={13,4,834,234,5,66};
+	double s2[6]={2.78,7.92,2.00,13.2,732.6,79.12};
+	char s3[6][6]={"d","gs","jr","a","nad","wef"};  
+	qsort(s1,6,sizeof(s1[0]),int_cmp);//用s[i]表某字符串，每组大小是sizeof()
+	for(i=0;i<6;i++)
+	{
+        printf("%d ",s1[i]);
+	}
+	printf("\n");
+	qsort(s2,6,sizeof(s2[0]),dou_cmp);
+	for(i=0;i<6;i++)
+	{
+		printf("%lf ",s2[i]);
+	}
+	printf("\n");
+	qsort(s3,6,sizeof(s3[0]),str_cmp);
+	for(i=0;i<6;i++)
+	{
+		printf("%s ",s3[i]);
+	}
+	printf("\n");
+    return 0;  
+} 
 
 
 //2.自己实现一个bubble_sort（冒泡排序），可以完成不同类型数据的排序。
@@ -1337,30 +1387,31 @@ int main()
 //4.如果嵌套了结构体的情况，嵌套的结构体对齐到自己的最大对齐数的
 //整数倍处，结构体的整体大小就是所有最大对齐数（含嵌套结构体的对
 //齐数）的整数倍
-#include <stdio.h>
-#pragma pack(4)  //#pragma pack (value)时的指定对齐值value。
-#pragma pack()   //#pragma pack () 取消指定对齐，恢复缺省对齐
 
-//16 4
-struct A{
-    char a;//1
-    double b;//8 和上一个对其需上一个开辟7,8+8=16
-    int c;//4 （16是）4的整数倍，16+4=20（除过第一个最大为8,8的最小倍数24）
-};
-
-struct B{
-    int a1;//4
-    char b1;//1 可对齐4+1=5
-    double c1;//8 上一个5不是8的倍数，最小为8 ；8+8=16
-    struct A obj;//24 可对齐16+24=40
-    struct A *objp;//4 可对齐40+4=44
-    struct A objarr[2];//48 上一个44不是8的倍数，最小为48 ；48+48=96
-    char *d1;//4 可对齐96+4=100（100不是8的倍数，最小为104）
-};
-
-int main()
-{
-	struct B obj;
-    printf("%d %d\n", sizeof(struct A), sizeof(struct B));//24  104
-}
+//#include <stdio.h>
+//#pragma pack(4)  //#pragma pack (value)时的指定对齐值value。
+//#pragma pack()   //#pragma pack () 取消指定对齐，恢复缺省对齐
+//
+////16 4
+//struct A{
+//    char a;//1
+//    double b;//8 和上一个对其需上一个开辟7,8+8=16
+//    int c;//4 （16是）4的整数倍，16+4=20（除过第一个最大为8,8的最小倍数24）
+//};
+//
+//struct B{
+//    int a1;//4
+//    char b1;//1 可对齐4+1=5
+//    double c1;//8 上一个5不是8的倍数，最小为8 ；8+8=16
+//    struct A obj;//24 可对齐16+24=40
+//    struct A *objp;//4 可对齐40+4=44
+//    struct A objarr[2];//48 上一个44不是8的倍数，最小为48 ；48+48=96
+//    char *d1;//4 可对齐96+4=100（100不是8的倍数，最小为104）
+//};
+//
+//int main()
+//{
+//	struct B obj;
+//    printf("%d %d\n", sizeof(struct A), sizeof(struct B));//24  104
+//}
 
