@@ -1260,57 +1260,56 @@ int main()
 //}
 
 //1.使用qsort排序一个整形数组，一个浮点型数组，一个字符串数组。
-#include <stdio.h>  
-#include <stdlib.h>
-#include <string.h>
-
-int int_cmp ( const void *a , const void *b ) //整形数组排序
-{ 
-	return *(int *)a - *(int *)b; 
-} 
-
-int dou_cmp( const void *a , const void *b ) //浮点型数组排序
-{ 
-	return *(double *)a > *(double *)b ? 1 : -1; 
-} 
-
-int str_cmp(const void * a,const void *b) //字符串数组排序  
-{  
-    return strcmp((char *)a,(char *)b) ; //字典序从小到大  
-    //return strcmp((char *)b,(char *)a) ; //字典序从大到小  
-}
-//int str_cmp( const void *a , const void *b ) 
+//#include <stdio.h>  
+//#include <stdlib.h>
+//#include <string.h>
+//
+//int int_cmp ( const void *a , const void *b ) //整形数组排序
 //{ 
-//	return *(char *)a - *(char *)b; 
+//	return *(int *)a - *(int *)b; 
 //} 
-
-int main()  
-{   
-	int i =0;
-    int s1[6]={13,4,834,234,5,66};
-	double s2[6]={2.78,7.92,2.00,13.2,732.6,79.12};
-	char s3[6][6]={"d","gs","jr","a","nad","wef"};  
-	qsort(s1,6,sizeof(s1[0]),int_cmp);//用s[i]表某字符串，每组大小是sizeof()
-	for(i=0;i<6;i++)
-	{
-        printf("%d ",s1[i]);
-	}
-	printf("\n");
-	qsort(s2,6,sizeof(s2[0]),dou_cmp);
-	for(i=0;i<6;i++)
-	{
-		printf("%lf ",s2[i]);
-	}
-	printf("\n");
-	qsort(s3,6,sizeof(s3[0]),str_cmp);
-	for(i=0;i<6;i++)
-	{
-		printf("%s ",s3[i]);
-	}
-	printf("\n");
-    return 0;  
-} 
-
+//
+//int dou_cmp( const void *a , const void *b ) //浮点型数组排序
+//{ 
+//	return *(double *)a > *(double *)b ? 1 : -1; 
+//} 
+//
+//int str_cmp(const void * a,const void *b) //字符串数组排序  
+//{  
+//    return strcmp((char *)a,(char *)b) ; //字典序从小到大  
+//    //return strcmp((char *)b,(char *)a) ; //字典序从大到小  
+//}
+////int str_cmp( const void *a , const void *b ) 
+////{ 
+////	return *(char *)a - *(char *)b; 
+////} 
+//
+//int main()  
+//{   
+//	int i =0;
+//    int s1[6]={13,4,834,234,5,66};
+//	double s2[6]={2.78,7.92,2.00,13.2,732.6,79.12};
+//	char s3[6][6]={"d","gs","jr","a","nad","wef"};  
+//	qsort(s1,6,sizeof(s1[0]),int_cmp);//用s[i]表某字符串，每组大小是sizeof()
+//	for(i=0;i<6;i++)
+//	{
+//        printf("%d ",s1[i]);
+//	}
+//	printf("\n");
+//	qsort(s2,6,sizeof(s2[0]),dou_cmp);
+//	for(i=0;i<6;i++)
+//	{
+//		printf("%lf ",s2[i]);
+//	}
+//	printf("\n");
+//	qsort(s3,6,sizeof(s3[0]),str_cmp);
+//	for(i=0;i<6;i++)
+//	{
+//		printf("%s ",s3[i]);
+//	}
+//	printf("\n");
+//    return 0;  
+//} 
 
 //2.自己实现一个bubble_sort（冒泡排序），可以完成不同类型数据的排序。
 //#include <stdio.h>
@@ -1367,14 +1366,58 @@ int main()
 //
 //int main()
 //{
-//	int arr[] = {45,4,3,23,34,4,45,5,6,75,68,9}; 
+//	int arr[] = {45,4,3,23,34,287,45,888,6,75,68,9};
 //	int len = sizeof(arr) / sizeof(arr[0]);
+//	printf("before:\n");
 //	show(arr, len);
 //	bubbleSort(arr, len, sizeof(int), intCmp);
+//	printf("after:\n");
 //	show(arr, len);
 //	return 0;
 //}
 
+//方法二
+//#include <stdio.h>
+//void swap(int *a,int *b)//该函数用于交换两个变量的值
+//{
+//    int temp=*a;
+//    *a=*b;
+//    *b=temp;
+//}
+//
+//void Bubble_Sort(int a[],int n)//冒泡排序核心代码
+//{
+//    int i,j;
+//    for(i=n-1;i>=0;--i)
+//    {
+//        int flag=0;
+//        for(j=0;j<i;++j)
+//        {
+//            if(a[j]>a[j+1])
+//            {
+//                flag=1;
+//                swap(&a[j],&a[j+1]);
+//            }
+//        }
+//        if(flag==0)//没有交换，排序完成
+//		{
+//			break;
+//		}
+//    }
+//}
+//
+//int main()
+//{
+//    int a[]={1,3,63,5,78,9,12,52,8};
+//    int n=sizeof(a)/sizeof(int),i;
+//    Bubble_Sort(a,n);
+//    for(i=0;i<n;i++)
+//	{
+//        printf("%d ",a[i]);
+//	}
+//	printf("\n");
+//    return 0;
+//}
 
 //结构体内存对齐
 //结构体内存对其规则：
