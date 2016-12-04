@@ -1458,3 +1458,24 @@ int main()
 //    printf("%d %d\n", sizeof(struct A), sizeof(struct B));//24  104
 //}
 
+//编写代码，演示多个字符从两端移动，向中间汇聚
+#include <stdio.h>   
+#include <windows.h> 
+int main() 
+{ 
+    char arr1[] = { "welcome to xi'an!" }; 
+    char arr2[] = { "#################" }; 
+    int left = 0; 
+    int  right = strlen(arr1) - 1;
+    printf("%s\n", arr2);
+    while (left <= right) 
+    { 
+        Sleep(100);//每向中间汇聚一次，停100毫秒 
+        arr2[left] = arr1[left]; 
+        arr2[right] = arr1[right]; 
+        left++; 
+        right--; 
+        printf("%s\n", arr2); 
+    }  
+    return 0; 
+}
