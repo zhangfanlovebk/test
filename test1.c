@@ -1459,23 +1459,253 @@ int main()
 //}
 
 //编写代码，演示多个字符从两端移动，向中间汇聚
-#include <stdio.h>   
-#include <windows.h> 
-int main() 
-{ 
-    char arr1[] = { "welcome to xi'an!" }; 
-    char arr2[] = { "#################" }; 
-    int left = 0; 
-    int  right = strlen(arr1) - 1;
-    printf("%s\n", arr2);
-    while (left <= right) 
-    { 
-        Sleep(100);//每向中间汇聚一次，停100毫秒 
-        arr2[left] = arr1[left]; 
-        arr2[right] = arr1[right]; 
-        left++; 
-        right--; 
-        printf("%s\n", arr2); 
-    }  
-    return 0; 
+//#include <stdio.h>   
+//#include <windows.h> 
+//int main() 
+//{ 
+//    char arr1[] = { "welcome to xi'an!" }; 
+//    char arr2[] = { "#################" }; 
+//    int left = 0; 
+//    int  right = strlen(arr1) - 1;
+//    printf("%s\n", arr2);
+//    while (left <= right) 
+//    { 
+//        Sleep(100);//每向中间汇聚一次，停100毫秒 
+//        arr2[left] = arr1[left]; 
+//        arr2[right] = arr1[right]; 
+//        left++; 
+//        right--; 
+//        printf("%s\n", arr2); 
+//    }  
+//    return 0; 
+//}
+
+//实现一个通讯录；
+//通讯录可以用来存储1000个人的信息，每个人的信息包括：
+//姓名、性别、年龄、电话、住址
+//
+//提供方法：
+//1.    添加联系人信息
+//2.    删除指定联系人信息
+//3.    查找指定联系人信息
+//4.    修改指定联系人信息
+//5.    显示所有联系人信息
+//6.    清空所有联系人
+//7.    以名字排序所有联系人
+//#include <stdio.h>
+//#include <string.h>
+//#include <>
+
+//缺少排序
+#ifndef __CONTACT_H_
+#define __CONTACT_H_
+#define NAME_MAX 20
+#define SEX_MAX 10
+#define TEL_MAX 15
+#define ADDR_MAX 50
+#define PEO_MAX 1000
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+typedef struct People
+{
+	char name[NAME_MAX];
+	char sex[SEX_MAX];
+	int age;
+	char tel[TEL_MAX];
+	char addr[ADDR_MAX];
+}*peo;
+
+typedef struct Contact
+{
+	int count;
+	struct People people[PEO_MAX];
+}*pCon;
+
+void add_peo(pCon pcon);
+void del_peo(pCon pcon);
+void find_peo(pCon pcon);
+void modify_peo(pCon pcon);
+void show_peo(pCon pcon);
+void clear_peo(pCon pcon);
+void sort_peo(pCon pcon);
+#endif
+
+//</pre><pre class="cpp" name="code">
+
+//#include "contact.h"
+int search(pCon pcon,char *name)
+{
+	int i = 0;
+	for(; i < pcon->count; i++)
+	{
+		if(strcmp(name,pcon->people[i].name) == 0)
+			return i;
+	}
+	return -1;
+}
+
+void add_peo(pCon pcon)							//添加联系人
+{
+	if(pcon->count == PEO_MAX)
+	{
+		printf("The contact has fullen.");
+		return ;
+	}
+	printf("please input name:  ");
+	scanf("%s",(pcon->people[pcon->count]).name);
+	printf("please input sex :  ");
+	scanf("%s",(pcon->people[pcon->count]).sex);
+	printf("please input age:  ");
+	scanf("%d",&((pcon->people[pcon->count]).age));
+	printf("please input tel:  ");
+	scanf("%s",(pcon->people[pcon->count]).tel);
+	printf("please input address:  ");
+	scanf("%s",(pcon->people[pcon->count]).addr);
+	pcon->count++;
+}
+void del_peo(pCon pcon)							//删除联系人
+{
+	int i;
+	char name[NAME_MAX];
+	printf("please input the people you want to delete:");
+	scanf("%s",name);
+	i = search(pcon,name);
+	if( i == -1)
+		printf("The people doesn't exsit.\n");
+	else if(i == 1000)
+		pcon->count--;
+	else
+	{
+		for(; i < pcon->count; i++)
+			pcon->people[i] = pcon->people[i+1];
+		pcon->count--;
+	}
+}
+void find_peo(pCon pcon)						//查找联系人
+{
+	int i;
+	char name[NAME_MAX];
+	printf("please input the people you want to find:");
+	scanf("%s",name);
+	i = search(pcon,name);
+	if( i == -1)
+		printf("The people doesn't exsit.\n");
+	else
+		printf("%s\t%s\t%d\t%s\t%s\n",
+			pcon->people[i].name,
+			pcon->people[i].sex,
+			pcon->people[i].age,
+			pcon->people[i].tel,
+			pcon->people[i].addr);
+}
+void modify_peo(pCon pcon)						//修改联系人
+{
+	int i;
+	char name[NAME_MAX];
+	printf("please input the people you want to modify:");
+	scanf("%s",name);
+	i = search(pcon,name);
+	if( i == -1)
+		printf("The people doesn't exsit.\n");
+	else
+		printf("please input name:  ");
+	scanf("%s",(pcon->people[i]).name);
+	printf("please input sex :  ");
+	scanf("%s",(pcon->people[i]).sex);
+	printf("please input age:  ");
+	scanf("%d",&((pcon->people[i]).age));
+	printf("please input tel:  ");
+	scanf("%s",(pcon->people[i]).tel);
+	printf("please input address:  ");
+	scanf("%s",(pcon->people[i]).addr);
+}
+void show_peo(pCon pcon)						//显示联系人
+{	
+	int i = 0;
+	for(; i < pcon->count; i++)
+	{
+		printf("%s\t%s\t%d\t%s\t%s\n",
+			pcon->people[i].name,
+			pcon->people[i].sex,
+			pcon->people[i].age,
+			pcon->people[i].tel,
+			pcon->people[i].addr);
+	}
+}
+void clear_peo(pCon pcon)						//清空联系人
+{
+	pcon->count = 0;
+}
+
+//void name_sort(Pho phobook)//冒泡排序通讯录中所有联系人
+//{
+//    int i = 0, j = 0;
+//    int k = phobook->count;
+//    if ((phobook->count) == 0)
+//    {
+//        printf("此通讯录中没有联系人!\n");
+//        return;
+//    }
+//    for (i = 0; i < (phobook->count) - 1; i++)
+//    {
+//        for (j = 0; j < (phobook->count) - i - 1; j++)
+//        {
+//            if (strcmp((phobook->linkman[j]).name, (phobook->linkman[j+1]).name)>0)
+//            {
+//                link temp = phobook->linkman[j];
+//                phobook->linkman[j] = phobook->linkman[j+1];
+//                phobook->linkman[j+1] = temp;
+//            }
+//        }
+//    }
+//}
+
+
+
+//#include "contact.h"
+void show_menu()							//显示界面
+{
+	printf("************************\n");				
+	printf("*  1:添加    2:删除    *\n");
+	printf("*  3:查找    4:修改    *\n");
+	printf("*  5:显示    6:清空    *\n");
+	printf("*  7:排序    0:退出    *\n");
+	printf("************************\n");
+}
+int main()
+{
+	struct Contact my_contact;					//定义联系人类
+	int input = 1;
+	my_contact.count = 0;						//联系人数量初始化
+	while(input)							//每次进行循环
+	{
+		show_menu();
+		printf("please input:");
+		scanf("%d",&input);
+		switch(input)
+		{
+			case 1:
+				add_peo(&my_contact);
+				break;
+			case 2:
+				del_peo(&my_contact);
+				break;
+			case 3:
+				find_peo(&my_contact);
+				break;
+			case 4:
+				modify_peo(&my_contact);
+				break;
+			case 5:
+				show_peo(&my_contact);
+				break;
+			case 6:
+				clear_peo(&my_contact);
+				break;
+			default :
+				break;
+		}
+	}
+	return 0;
 }
