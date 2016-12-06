@@ -1507,6 +1507,7 @@ int main()
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
 typedef struct People
 {
 	char name[NAME_MAX];
@@ -1514,7 +1515,7 @@ typedef struct People
 	int age;
 	char tel[TEL_MAX];
 	char addr[ADDR_MAX];
-}*peo;
+}People,*peo;
 
 typedef struct Contact
 {
@@ -1638,28 +1639,29 @@ void clear_peo(pCon pcon)						//清空联系人
 	pcon->count = 0;
 }
 
-//void name_sort(Pho phobook)//冒泡排序通讯录中所有联系人
-//{
-//    int i = 0, j = 0;
-//    int k = phobook->count;
-//    if ((phobook->count) == 0)
-//    {
-//        printf("此通讯录中没有联系人!\n");
-//        return;
-//    }
-//    for (i = 0; i < (phobook->count) - 1; i++)
-//    {
-//        for (j = 0; j < (phobook->count) - i - 1; j++)
-//        {
-//            if (strcmp((phobook->linkman[j]).name, (phobook->linkman[j+1]).name)>0)
-//            {
-//                link temp = phobook->linkman[j];
-//                phobook->linkman[j] = phobook->linkman[j+1];
-//                phobook->linkman[j+1] = temp;
-//            }
-//        }
-//    }
-//}
+void sort_peo(pCon pcon)//冒泡排序通讯录中所有联系人
+{
+    int i = 0, j = 0;
+    //int k = pcon->count;
+    if ((pcon->count) == 0)
+    {
+        printf("此通讯录中没有联系人!\n");
+        return;
+    }
+    for (i = 0; i < (pcon->count) - 1; i++)
+    {
+        for (j = 0; j < (pcon->count) - i - 1; j++)
+        {
+            if (strcmp((pcon->people[j]).name, (pcon->people[j+1]).name)>0)
+            {
+                People temp = pcon->people[j];
+                pcon->people[j] = pcon->people[j+1];
+                pcon->people[j+1] = temp;
+            }
+        }
+    }
+	show_peo( pcon);
+}
 
 
 
@@ -1703,6 +1705,8 @@ int main()
 			case 6:
 				clear_peo(&my_contact);
 				break;
+			case 7:
+				sort_peo(&my_contact);
 			default :
 				break;
 		}
