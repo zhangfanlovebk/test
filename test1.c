@@ -1716,33 +1716,75 @@ int main()
 
 //编写代码实现，模拟用户登录情景，并且只能登录三次。
 //只允许输入三次密码，如果密码正确则提示登录成，如果三次均输入错误，则退出程序。
+//#include <stdio.h>
+//#include <string.h>
+//int main()
+//{
+//	 char key[] ="123456";
+//	 char input[10];
+//	 int i=0;
+//	 for (i=0;i<3;i++)
+//	 {
+//		printf("请输入密码:");
+//		scanf("%s",input);
+//		if (strcmp(key,input)==0)//strcmp比较字符串。若str1=str2，则返回零；
+//		{
+//			break;
+//		}							  
+//		else					//若str1<str2，则返回负数；若str1>str2，则返回正数。
+//		{
+//			printf("密码输入错误\n");
+//		}
+//	 }
+//	 if(i==3)
+//	 {
+//		 printf("三次密码错误，退出系统\n");
+//	 }
+//	 else
+//	 {
+//		 printf("登录成功\n");
+//	 }
+//	 return 0;
+//}
+
+
+//有5位运动员参加了10米台跳水比赛，有人让他们预测比赛结果
+//A选手说：B第一，我第三。
+//B选手说：我第二，E第四。
+//C选手说：我第一，D第二。
+//D选手说：C最后，我第三。
+//E选手说：我第四，A第一。
+//比赛结束后，每位选手都说对了一半，请编程确定比赛的名次
 #include <stdio.h>
-#include <string.h>
 int main()
 {
-	 char key[] ="123456";
-	 char input[10];
-	 int i=0;
-	 for (i=0;i<3;i++)
-	 {
-		printf("请输入密码:");
-		scanf("%s",input);
-		if (strcmp(key,input)==0)//strcmp比较字符串。若str1=str2，则返回零；
+    int a = 0;
+    int b = 0;
+    int c = 0;
+    int d = 0;
+    int e = 0;
+    for (a = 1; a <= 5; a++)
+	{
+		for (b = 1; b <= 5; b++)
 		{
-			break;
-		}							  
-		else					//若str1<str2，则返回负数；若str1>str2，则返回正数。
-		{
-			printf("密码输入错误\n");
+			for (c = 1; c <= 5; c++)
+			{
+				for (d = 1; d <= 5; d++)
+				{
+					for (e = 1; e <= 5; e++)
+					{
+						if (((b == 1) + (a == 3) == 1) &&
+							((b == 2) + (e == 4) == 1) &&
+							((c == 1) + (d == 2) == 1) &&
+							((c == 5) + (d == 3) == 1) &&
+							((e == 4) + (a == 1) == 1) == 1)
+						{
+							printf("a=%d b=%d c=%d d=%d e=%d \n", a, b, c, d, e);
+						}
+					}
+				}
+			}
 		}
-	 }
-	 if(i==3)
-	 {
-		 printf("三次密码错误，退出系统\n");
-	 }
-	 else
-	 {
-		 printf("登录成功\n");
-	 }
-	 return 0;
+	}
+    return 0;
 }
