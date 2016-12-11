@@ -1798,19 +1798,201 @@ int main()
 //D说：C在胡说
 //已知3个人说了真话，1个人说的是假话。
 //现在请根据这些信息，写一个程序来确定到底谁是凶手
-#include <stdio.h> 
-int main() 
-{ 
-    char killer; 
-    for(killer='A'; killer<='D'; killer++)//巧妙地利用ASCII 从A-D进行循环和比较 
-    { 
-        //下面分别对应每个人都供词  不是A 是C     是D    不是D 
-        if (((killer!='A') + (killer=='C') + (killer=='D') + (killer!='D'))==3) 
-        { 
-			//等于3表示有三人说真话
-            printf("%c是凶手\n",killer); 
-            break; 
-        } 
-    } 
-    return 0; 
-} 
+//#include <stdio.h> 
+//int main() 
+//{ 
+//    char killer; 
+//    for(killer='A'; killer<='D'; killer++)//巧妙地利用ASCII 从A-D进行循环和比较 
+//    { 
+//        //下面分别对应每个人都供词  不是A 是C     是D    不是D 
+//        if (((killer!='A') + (killer=='C') + (killer=='D') + (killer!='D'))==3) 
+//        { 
+//			//等于3表示有三人说真话
+//            printf("%c是凶手\n",killer); 
+//            break; 
+//        } 
+//    } 
+//    return 0; 
+//} 
+
+
+//C与C++注释转化
+#ifndef _CONVERT_H_
+#define _CONVERT_H_
+
+#include <stdio.h>
+#include <assert.h>
+#include <windows.h>
+
+#define INPUT_FILE "input.c"
+#define OUTPUT_FILE "OUTPUT.C"
+
+#pragma warning(disable:4996)
+
+typedef enum STATUS
+{
+	NORMAL_STATUS,
+	C_STATUS,
+	CPP_STATUS,
+	END_STATUS,
+}status_t;
+
+extern status_t gStatus;
+void convertBegin();
+#endif
+
+
+#include "convert.h"
+status_t gStatus=NORMAL_STATUS;
+void doNormal (FILE *in,FILE *out)
+{
+	assert(in);
+	assert(out);
+	int first = fgetc(in);
+	int second = 0;
+	switch (first)
+	{
+	case '/':
+		{
+			second = fgetc(in);
+			if(second == '*')
+			{
+				fputc('/',out);
+				fputc('/',out);
+				gStatus = C_STATUS;
+			}
+			else if (second =='/')
+			{
+				fputc(first,out);
+				fputc(second,out);
+				gStatus = CPP_STATUS;
+			}
+			else
+			{
+				fputc(first,out);
+				fputc(second,out);
+			}
+		}
+		break;
+	case EOF:
+		gStatus = END_STATUS;
+		break;
+	default:
+		fputc(first,out);
+		break;
+	}
+}
+
+void doCStatus(FILE *in,FILE *out)
+{
+	assert(in);
+	assert(out);
+	int first = fgetc(in);
+	int second = 0;
+	switch (first)
+	{
+	case '*':
+		{
+			second = fgetc(in);
+			if(second == '/')
+			{
+				int third = fgetc(in);
+				if(third == '\n')
+				{
+					fputc(third,out);
+				}
+				else
+				{
+					ungetc(third,in);
+					fputc('\n',out);
+				}
+				gStatus = NORMAL_STATUS;
+			}
+			else
+			{
+				fputc(first,out);
+				unputc(second,in);
+			}
+		}
+		break;
+	case '\n':
+		fputc(first,out);
+		fputc('/',out);
+		fputc('/',out);
+		break;
+	case EOF:
+		gStatus = END_STATUS;
+		break;
+	default:
+		fputc(first,out);
+		break;
+	}
+}
+
+
+static void doCPPStatus(FILE *in,FILE *out)
+{
+	assert(in);
+	assert(out);
+	int first = fgetc(in);
+	switch (first)
+	{
+	case '\n':
+		fputc(first,out);
+		gStatus = NORMAL_STATUS;
+		break;
+	case EOF:
+		gStatus = END_STATUS;
+		break;
+	default:
+		fputc(first,out);
+		break;
+	}
+}
+
+static void convertStatusMachine(FILE *in,FILE *out)
+{
+	assert(in);
+	assert(out);
+	while (gStatus != END_STATUS)
+	{
+		switch (gStatus)
+		{
+		case NORMAL_STATUS:
+			doNormal(in,out);
+			break;
+		case C_STATUS:
+			doCStatus(in,out);
+			break;
+		case CPP_STATUS:
+			doCPPStatus(in,out);
+			break;
+		case END_STATUS:
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+void convertBegin()
+{
+	FILE *in = fopen(INPUT_FILE,"r");
+	if(NULL == in)
+	{
+		perror("fopen");
+		exit(2);
+	}
+	convertStatusMachine(in,out);
+	fclose(in);
+	fclose(out);
+}
+
+#include "convert.h"
+int main()
+{
+	convertBegin();
+	printf("convert done...\n");
+	system("pause");
+	return 0;
+}
