@@ -1817,182 +1817,206 @@ int main()
 
 
 //C与C++注释转化
-#ifndef _CONVERT_H_
-#define _CONVERT_H_
+//#ifndef _CONVERT_H_
+//#define _CONVERT_H_
+//
+//#include <stdio.h>
+//#include <assert.h>
+//#include <windows.h>
+//
+//#define INPUT_FILE "input.c"
+//#define OUTPUT_FILE "OUTPUT.C"
+//
+//#pragma warning(disable:4996)
+//
+//typedef enum STATUS
+//{
+//	NORMAL_STATUS,
+//	C_STATUS,
+//	CPP_STATUS,
+//	END_STATUS,
+//}status_t;
+//
+//extern status_t gStatus;
+//void convertBegin();
+//#endif
+//
+//
+//#include "convert.h"
+//status_t gStatus=NORMAL_STATUS;
+//void doNormal (FILE *in,FILE *out)
+//{
+//	assert(in);
+//	assert(out);
+//	int first = fgetc(in);
+//	int second = 0;
+//	switch (first)
+//	{
+//	case '/':
+//		{
+//			second = fgetc(in);
+//			if(second == '*')
+//			{
+//				fputc('/',out);
+//				fputc('/',out);
+//				gStatus = C_STATUS;
+//			}
+//			else if (second =='/')
+//			{
+//				fputc(first,out);
+//				fputc(second,out);
+//				gStatus = CPP_STATUS;
+//			}
+//			else
+//			{
+//				fputc(first,out);
+//				fputc(second,out);
+//			}
+//		}
+//		break;
+//	case EOF:
+//		gStatus = END_STATUS;
+//		break;
+//	default:
+//		fputc(first,out);
+//		break;
+//	}
+//}
+//
+//void doCStatus(FILE *in,FILE *out)
+//{
+//	assert(in);
+//	assert(out);
+//	int first = fgetc(in);
+//	int second = 0;
+//	switch (first)
+//	{
+//	case '*':
+//		{
+//			second = fgetc(in);
+//			if(second == '/')
+//			{
+//				int third = fgetc(in);
+//				if(third == '\n')
+//				{
+//					fputc(third,out);
+//				}
+//				else
+//				{
+//					ungetc(third,in);
+//					fputc('\n',out);
+//				}
+//				gStatus = NORMAL_STATUS;
+//			}
+//			else
+//			{
+//				fputc(first,out);
+//				unputc(second,in);
+//			}
+//		}
+//		break;
+//	case '\n':
+//		fputc(first,out);
+//		fputc('/',out);
+//		fputc('/',out);
+//		break;
+//	case EOF:
+//		gStatus = END_STATUS;
+//		break;
+//	default:
+//		fputc(first,out);
+//		break;
+//	}
+//}
+//
+//
+//static void doCPPStatus(FILE *in,FILE *out)
+//{
+//	assert(in);
+//	assert(out);
+//	int first = fgetc(in);
+//	switch (first)
+//	{
+//	case '\n':
+//		fputc(first,out);
+//		gStatus = NORMAL_STATUS;
+//		break;
+//	case EOF:
+//		gStatus = END_STATUS;
+//		break;
+//	default:
+//		fputc(first,out);
+//		break;
+//	}
+//}
+//
+//static void convertStatusMachine(FILE *in,FILE *out)
+//{
+//	assert(in);
+//	assert(out);
+//	while (gStatus != END_STATUS)
+//	{
+//		switch (gStatus)
+//		{
+//		case NORMAL_STATUS:
+//			doNormal(in,out);
+//			break;
+//		case C_STATUS:
+//			doCStatus(in,out);
+//			break;
+//		case CPP_STATUS:
+//			doCPPStatus(in,out);
+//			break;
+//		case END_STATUS:
+//			break;
+//		default:
+//			break;
+//		}
+//	}
+//}
+//
+//void convertBegin()
+//{
+//	FILE *in = fopen(INPUT_FILE,"r");
+//	if(NULL == in)
+//	{
+//		perror("fopen");
+//		exit(2);
+//	}
+//	convertStatusMachine(in,out);
+//	fclose(in);
+//	fclose(out);
+//}
+//
+//#include "convert.h"
+//int main()
+//{
+//	convertBegin();
+//	printf("convert done...\n");
+//	system("pause");
+//	return 0;
+//}
 
+//在屏幕上打印杨辉三角
 #include <stdio.h>
-#include <assert.h>
-#include <windows.h>
-
-#define INPUT_FILE "input.c"
-#define OUTPUT_FILE "OUTPUT.C"
-
-#pragma warning(disable:4996)
-
-typedef enum STATUS
+int main ()
 {
-	NORMAL_STATUS,
-	C_STATUS,
-	CPP_STATUS,
-	END_STATUS,
-}status_t;
-
-extern status_t gStatus;
-void convertBegin();
-#endif
-
-
-#include "convert.h"
-status_t gStatus=NORMAL_STATUS;
-void doNormal (FILE *in,FILE *out)
-{
-	assert(in);
-	assert(out);
-	int first = fgetc(in);
-	int second = 0;
-	switch (first)
+	int i,j;
+	int n=0;
+	int a[17][17]={0,1};
+	while(n<1 || n>16)
 	{
-	case '/':
+		printf("请输入杨辉三角的行数：");
+		scanf("%d",&n);
+	}
+	for(i=1;i<=n;i++)
+	{
+		for(j=1;j<=i;j++)
 		{
-			second = fgetc(in);
-			if(second == '*')
-			{
-				fputc('/',out);
-				fputc('/',out);
-				gStatus = C_STATUS;
-			}
-			else if (second =='/')
-			{
-				fputc(first,out);
-				fputc(second,out);
-				gStatus = CPP_STATUS;
-			}
-			else
-			{
-				fputc(first,out);
-				fputc(second,out);
-			}
+			a[i][j]=a[i-1][j-1]+a[i-1][j];
+			printf("%5d",a[i][j]);
 		}
-		break;
-	case EOF:
-		gStatus = END_STATUS;
-		break;
-	default:
-		fputc(first,out);
-		break;
+		printf("\n");
 	}
-}
-
-void doCStatus(FILE *in,FILE *out)
-{
-	assert(in);
-	assert(out);
-	int first = fgetc(in);
-	int second = 0;
-	switch (first)
-	{
-	case '*':
-		{
-			second = fgetc(in);
-			if(second == '/')
-			{
-				int third = fgetc(in);
-				if(third == '\n')
-				{
-					fputc(third,out);
-				}
-				else
-				{
-					ungetc(third,in);
-					fputc('\n',out);
-				}
-				gStatus = NORMAL_STATUS;
-			}
-			else
-			{
-				fputc(first,out);
-				unputc(second,in);
-			}
-		}
-		break;
-	case '\n':
-		fputc(first,out);
-		fputc('/',out);
-		fputc('/',out);
-		break;
-	case EOF:
-		gStatus = END_STATUS;
-		break;
-	default:
-		fputc(first,out);
-		break;
-	}
-}
-
-
-static void doCPPStatus(FILE *in,FILE *out)
-{
-	assert(in);
-	assert(out);
-	int first = fgetc(in);
-	switch (first)
-	{
-	case '\n':
-		fputc(first,out);
-		gStatus = NORMAL_STATUS;
-		break;
-	case EOF:
-		gStatus = END_STATUS;
-		break;
-	default:
-		fputc(first,out);
-		break;
-	}
-}
-
-static void convertStatusMachine(FILE *in,FILE *out)
-{
-	assert(in);
-	assert(out);
-	while (gStatus != END_STATUS)
-	{
-		switch (gStatus)
-		{
-		case NORMAL_STATUS:
-			doNormal(in,out);
-			break;
-		case C_STATUS:
-			doCStatus(in,out);
-			break;
-		case CPP_STATUS:
-			doCPPStatus(in,out);
-			break;
-		case END_STATUS:
-			break;
-		default:
-			break;
-		}
-	}
-}
-
-void convertBegin()
-{
-	FILE *in = fopen(INPUT_FILE,"r");
-	if(NULL == in)
-	{
-		perror("fopen");
-		exit(2);
-	}
-	convertStatusMachine(in,out);
-	fclose(in);
-	fclose(out);
-}
-
-#include "convert.h"
-int main()
-{
-	convertBegin();
-	printf("convert done...\n");
-	system("pause");
 	return 0;
 }
