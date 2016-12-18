@@ -1998,25 +1998,111 @@ int main()
 //}
 
 //在屏幕上打印杨辉三角
+//#include <stdio.h>
+//int main ()
+//{
+//	int i,j;
+//	int n=0;
+//	int a[17][17]={0,1};
+//	while(n<1 || n>16)
+//	{
+//		printf("请输入杨辉三角的行数：");
+//		scanf("%d",&n);
+//	}
+//	for(i=1;i<=n;i++)
+//	{
+//		for(j=1;j<=i;j++)
+//		{
+//			a[i][j]=a[i-1][j-1]+a[i-1][j];
+//			printf("%5d",a[i][j]);
+//		}
+//		printf("\n");
+//	}
+//	return 0;
+//}
+
+//再次编写二分查找
+//#include <stdio.h>
+//int bin_search(int arr[],int left,int right,int key)
+//{
+//    while(left<=right)
+//    {
+//        int mid=(left+right)/2;
+//        if (arr[mid]<key)
+//        {
+//            left=mid+1;
+//        }
+//        else if(arr[mid]>key)
+//        {
+//            right=mid-1;
+//        }
+//        else
+//        {
+//            return mid;
+//        }
+//    }
+//    return -1;
+//}
+//
+//int main()
+//{
+//    int arr[]={1,2,3,4,5,6,7,8,9,10};
+//    int ret=bin_search(arr,0,sizeof(arr)/sizeof(arr[0])-1,3);
+//    if(ret==-1)
+//    {
+//        printf("没有找到\n");
+//    }
+//    else
+//    {
+//        printf("找到了，下标是：%d\n",ret);
+//    }
+//	return 0;
+//}
+
+//完成猜数字游戏
 #include <stdio.h>
-int main ()
+#include <time.h>
+#include <stdlib.h>
+int main()
 {
-	int i,j;
-	int n=0;
-	int a[17][17]={0,1};
-	while(n<1 || n>16)
+	int start = 1;
+	int input;
+	int num;
+	while (start)
 	{
-		printf("请输入杨辉三角的行数：");
-		scanf("%d",&n);
-	}
-	for(i=1;i<=n;i++)
-	{
-		for(j=1;j<=i;j++)
+		printf( "请选择：\n" );
+		printf( "1 开始游戏\n" );
+		printf( "0 退出游戏\n" );
+		scanf( "%d", &start);
+		switch (start)
 		{
-			a[i][j]=a[i-1][j-1]+a[i-1][j];
-			printf("%5d",a[i][j]);
+			case 1:
+			{
+				printf( "游戏开始\n" );
+				srand(time( NULL));
+				num = rand() % 100;
+				input = 0;
+				while (1)
+				{
+					printf( "你猜多少：" );
+					scanf( "%d", &input);
+					if (input > num)
+						printf( "你猜大了\n" );
+					else if (input < num)
+						printf( "你猜小了\n" );
+					else
+					{
+						printf( "你猜对了！\n" );
+						break;
+					}
+				}//这里出现break的话会一直在while循环内，终止不了
+			}
+			case 0:
+				exit( EXIT_FAILURE);
+			default:
+				printf( "选择错误\n" );
+				break;
 		}
-		printf("\n");
 	}
 	return 0;
 }
