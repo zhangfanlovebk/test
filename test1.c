@@ -2060,49 +2060,78 @@ int main()
 //}
 
 //完成猜数字游戏
+//#include <stdio.h>
+//#include <time.h>
+//#include <stdlib.h>
+//int main()
+//{
+//	int start = 1;
+//	int input;
+//	int num;
+//	while (start)
+//	{
+//		printf( "请选择：\n" );
+//		printf( "1 开始游戏\n" );
+//		printf( "0 退出游戏\n" );
+//		scanf( "%d", &start);
+//		switch (start)
+//		{
+//			case 1:
+//			{
+//				printf( "游戏开始\n" );
+//				srand(time( NULL));
+//				num = rand() % 100;
+//				input = 0;
+//				while (1)
+//				{
+//					printf( "你猜多少：" );
+//					scanf( "%d", &input);
+//					if (input > num)
+//						printf( "你猜大了\n" );
+//					else if (input < num)
+//						printf( "你猜小了\n" );
+//					else
+//					{
+//						printf( "你猜对了！\n" );
+//						break;
+//					}
+//				}//这里出现break的话会一直在while循环内，终止不了
+//			}
+//			case 0:
+//				exit( EXIT_FAILURE);
+//			default:
+//				printf( "选择错误\n" );
+//				break;
+//		}
+//	}
+//	return 0;
+//}
+
+//求Sn=a+aa+aaa+aaaa+aaaaa的前5项之和，其中a是一个数字，例如：2+22+222+2222+22222
+//#include<stdio.h>
+//int main()
+//{
+//    int a=0;
+//    int Sn=0;
+//    printf("请输入一个整数：\n");
+//    scanf("%d",&a);
+//    Sn=a*5+a*40+a*300+a*2000+a*10000;
+//    printf("%d\n",Sn);
+//    return 0;
+//}
+
 #include <stdio.h>
-#include <time.h>
-#include <stdlib.h>
-int main()
+int main ()
 {
-	int start = 1;
-	int input;
-	int num;
-	while (start)
+    int sum=0;
+    int a=0,n,i;
+    scanf("%d",&a);
+    n=a;
+	for (i=0;i<5;i++)
 	{
-		printf( "请选择：\n" );
-		printf( "1 开始游戏\n" );
-		printf( "0 退出游戏\n" );
-		scanf( "%d", &start);
-		switch (start)
-		{
-			case 1:
-			{
-				printf( "游戏开始\n" );
-				srand(time( NULL));
-				num = rand() % 100;
-				input = 0;
-				while (1)
-				{
-					printf( "你猜多少：" );
-					scanf( "%d", &input);
-					if (input > num)
-						printf( "你猜大了\n" );
-					else if (input < num)
-						printf( "你猜小了\n" );
-					else
-					{
-						printf( "你猜对了！\n" );
-						break;
-					}
-				}//这里出现break的话会一直在while循环内，终止不了
-			}
-			case 0:
-				exit( EXIT_FAILURE);
-			default:
-				printf( "选择错误\n" );
-				break;
-		}
+		sum+=a;
+		a=a*10+n;
 	}
+	printf ("%d\n",sum);
 	return 0;
 }
