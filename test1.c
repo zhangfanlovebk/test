@@ -2120,18 +2120,53 @@ int main()
 //    return 0;
 //}
 
+//#include <stdio.h>
+//int main ()
+//{
+//    int sum=0;
+//    int a=0,n,i;
+//    scanf("%d",&a);
+//    n=a;
+//	for (i=0;i<5;i++)
+//	{
+//		sum+=a;
+//		a=a*10+n;
+//	}
+//	printf ("%d\n",sum);
+//	return 0;
+//}
+
+//编写一个程序，它从标准输入读取C源代码，
+//并验证所有的花括号都正确的成对出现
+
 #include <stdio.h>
-int main ()
+int main()
 {
-    int sum=0;
-    int a=0,n,i;
-    scanf("%d",&a);
-    n=a;
-	for (i=0;i<5;i++)
+	char a;
+	int count=0;
+	while((a=getchar()) != '\n')//如果为EOF，输不出来“匹配”
 	{
-		sum+=a;
-		a=a*10+n;
+		if(a=='{')//当遇到{时，计数器+1
+		{
+			count++;
+		}
+		if(a=='}' && count == 0)//当遇到}但计数器为0了，输出不匹配，即为}在{前边
+		{
+			printf("不匹配\n");
+			return 0;
+		}
+		if(a=='}' && count != 0)//当遇到}且计数器不为0时，计数器-1
+		{
+			count--;
+		}
 	}
-	printf ("%d\n",sum);
+	if(count == 0)
+	{
+		printf("匹配\n");
+	}
+	else
+	{
+		printf("不匹配\n");
+	}
 	return 0;
 }
