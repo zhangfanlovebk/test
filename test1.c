@@ -2138,35 +2138,64 @@ int main()
 
 //编写一个程序，它从标准输入读取C源代码，
 //并验证所有的花括号都正确的成对出现
+//#include <stdio.h>
+//int main()
+//{
+//	char a;
+//	int count=0;
+//	while((a=getchar()) != '\n')//如果为EOF，输不出来“匹配”
+//	{
+//		if(a=='{')//当遇到{时，计数器+1
+//		{
+//			count++;
+//		}
+//		if(a=='}' && count == 0)//当遇到}但计数器为0了，输出不匹配，即为}在{前边
+//		{
+//			printf("不匹配\n");
+//			return 0;
+//		}
+//		if(a=='}' && count != 0)//当遇到}且计数器不为0时，计数器-1
+//		{
+//			count--;
+//		}
+//	}
+//	if(count == 0)
+//	{
+//		printf("匹配\n");
+//	}
+//	else
+//	{
+//		printf("不匹配\n");
+//	}
+//	return 0;
+//}
 
-#include <stdio.h>
-int main()
-{
-	char a;
-	int count=0;
-	while((a=getchar()) != '\n')//如果为EOF，输不出来“匹配”
-	{
-		if(a=='{')//当遇到{时，计数器+1
-		{
-			count++;
-		}
-		if(a=='}' && count == 0)//当遇到}但计数器为0了，输出不匹配，即为}在{前边
-		{
-			printf("不匹配\n");
-			return 0;
-		}
-		if(a=='}' && count != 0)//当遇到}且计数器不为0时，计数器-1
-		{
-			count--;
-		}
-	}
-	if(count == 0)
-	{
-		printf("匹配\n");
-	}
-	else
-	{
-		printf("不匹配\n");
-	}
-	return 0;
+//求出0～999之间的所有“水仙花数”并输出
+#include<stdio.h> 
+int NarcissisticNumber() 
+{ 
+    int num = 0; 
+    int hundred = 0; 
+    int ten = 0; 
+    int unit = 0; 
+    for (num=0; num < 1000; num++) 
+    { 
+        hundred = num / 100; 
+        ten = (num - hundred * 100) / 10; 
+        unit = (num - hundred * 100 - ten * 10) / 1; 
+        if (num == hundred * hundred * hundred 
+            + ten * ten * ten 
+            + unit *unit *unit) 
+        { 
+            printf("%d ", num); 
+        } 
+    } 
+    printf("\n");
+    return 0;
+}
+
+int main() 
+{ 
+    NarcissisticNumber(); 
+    return 0; 
 }
