@@ -2171,31 +2171,85 @@ int main()
 //}
 
 //求出0～999之间的所有“水仙花数”并输出
-#include<stdio.h> 
-int NarcissisticNumber() 
-{ 
-    int num = 0; 
-    int hundred = 0; 
-    int ten = 0; 
-    int unit = 0; 
-    for (num=0; num < 1000; num++) 
-    { 
-        hundred = num / 100; 
-        ten = (num - hundred * 100) / 10; 
-        unit = (num - hundred * 100 - ten * 10) / 1; 
-        if (num == hundred * hundred * hundred 
-            + ten * ten * ten 
-            + unit *unit *unit) 
-        { 
-            printf("%d ", num); 
-        } 
-    } 
-    printf("\n");
-    return 0;
+//#include<stdio.h> 
+//int NarcissisticNumber() 
+//{ 
+//    int num = 0; 
+//    int hundred = 0; 
+//    int ten = 0; 
+//    int unit = 0; 
+//    for (num=0; num < 1000; num++) 
+//    { 
+//        hundred = num / 100; 
+//        ten = (num - hundred * 100) / 10; 
+//        unit = (num - hundred * 100 - ten * 10) / 1; 
+//        if (num == hundred * hundred * hundred 
+//            + ten * ten * ten 
+//            + unit *unit *unit) 
+//        { 
+//            printf("%d ", num); 
+//        } 
+//    } 
+//    printf("\n");
+//    return 0;
+//}
+//
+//int main() 
+//{ 
+//    NarcissisticNumber(); 
+//    return 0; 
+//}
+
+//#include <stdio.h>
+//int main()
+//{
+//	char a = "我爱你";
+//	char b;
+//	printf("请输入:\n");
+//	scanf("%c",&b);
+//	if(b == a)
+//	{
+//		printf("我也爱你，亲爱的！\n");
+//	}
+//	else
+//	{
+//		printf("二狗，你变了！\n");
+//	}
+//	return 0;
+//}
+
+#include <stdio.h>
+#include<string.h>
+int mystrcmp(const char*a, const char*b)
+{
+	if (*a != *b)
+	{
+		return 0;
+	}
+	while ((*a++ == *b++)&&((*a!='\0')&&(*b!='\0')))
+	{
+		if (*a != *b)
+		{
+			return 0;
+		}
+	}
+	return 1;
 }
 
-int main() 
-{ 
-    NarcissisticNumber(); 
-    return 0; 
+int main()
+{
+	int c = 0;
+	char a[100] = "我爱你";
+	char b[100];
+	printf("请输入:\n");
+	gets_s(b, 100);
+	if (mystrcmp(a, b) == 1)
+	{
+		printf("我也爱你，亲爱的！\n");
+	}
+	else
+	{
+		printf("二狗，你变了！\n");
+	}
+	return 0;
 }
