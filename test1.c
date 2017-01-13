@@ -2218,38 +2218,89 @@ int main()
 //	return 0;
 //}
 
-#include <stdio.h>
-#include<string.h>
-int mystrcmp(const char*a, const char*b)
-{
-	if (*a != *b)
-	{
-		return 0;
-	}
-	while ((*a++ == *b++)&&((*a!='\0')&&(*b!='\0')))
-	{
-		if (*a != *b)
-		{
-			return 0;
-		}
-	}
-	return 1;
-}
+//#include <stdio.h>
+//#include<string.h>
+//int mystrcmp(const char*a, const char*b)
+//{
+//	if (*a != *b)
+//	{
+//		return 0;
+//	}
+//	while ((*a++ == *b++)&&((*a!='\0')&&(*b!='\0')))
+//	{
+//		if (*a != *b)
+//		{
+//			return 0;
+//		}
+//	}
+//	return 1;
+//}
+//
+//int main()
+//{
+//	int c = 0;
+//	char a[100] = "I love you!";
+//	char b[100];
+//	printf("Please Enter:\n");
+//	gets_s(b, 100);
+//	if (mystrcmp(a, b) == 1)
+//	{
+//		printf("My dear, I love you too！\n");
+//	}
+//	else
+//	{
+//		printf("Two dog, you have become！\n");
+//	}
+//	return 0;
+//}
 
-int main()
+
+//在屏幕上输出以下图案：
+//      *
+//     ***
+//    *****
+//   *******
+//  *********
+// ***********
+//*************
+// ***********
+//  *********
+//   *******
+//    *****
+//     ***
+//      *
+#include <stdio.h>
+int main ()
 {
-	int c = 0;
-	char a[100] = "我爱你";
-	char b[100];
-	printf("请输入:\n");
-	gets_s(b, 100);
-	if (mystrcmp(a, b) == 1)
+	//int i,j;
+	//for(i = j = 1; i; j++ < 7 ? i++ : i--)
+	//{
+	//	printf("%*.*s\n",7+i,(i << 1) - 1,"*************");
+	//}
+	int i,j,k;
+	for(i = 1;i <= 7;i++)//先打印上边的七行
 	{
-		printf("我也爱你，亲爱的！\n");
+		for(j = 1;j <= 7 - i;j++)//控制要打印的空格数量
+		{
+			printf(" ");
+		}
+		for(k = 1;k <= 2 * i - 1;k++) //控制要打印的星号数
+		{
+			printf("*");
+		}
+		printf("\n");
 	}
-	else
+	for(i = 1;i <= 6;i++)//打印下面的六行
 	{
-		printf("二狗，你变了！\n");
+		for(j = 1;j <= i;j++)
+		{
+			printf(" ");
+		}
+		for(k = 1;k <= 13 - 2 * i;k++)
+		{
+			printf("*");
+		}
+		printf("\n");
 	}
 	return 0;
 }
