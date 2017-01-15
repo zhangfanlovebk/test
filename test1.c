@@ -2269,38 +2269,55 @@ int main()
 //    *****
 //     ***
 //      *
-#include <stdio.h>
-int main ()
+//#include <stdio.h>
+//int main ()
+//{
+//	//int i,j;
+//	//for(i = j = 1; i; j++ < 7 ? i++ : i--)
+//	//{
+//	//	printf("%*.*s\n",7+i,(i << 1) - 1,"*************");
+//	//}
+//	int i,j,k;
+//	for(i = 1;i <= 7;i++)//先打印上边的七行
+//	{
+//		for(j = 1;j <= 7 - i;j++)//控制要打印的空格数量
+//		{
+//			printf(" ");
+//		}
+//		for(k = 1;k <= 2 * i - 1;k++) //控制要打印的星号数
+//		{
+//			printf("*");
+//		}
+//		printf("\n");
+//	}
+//	for(i = 1;i <= 6;i++)//打印下面的六行
+//	{
+//		for(j = 1;j <= i;j++)
+//		{
+//			printf(" ");
+//		}
+//		for(k = 1;k <= 13 - 2 * i;k++)
+//		{
+//			printf("*");
+//		}
+//		printf("\n");
+//	}
+//	return 0;
+//}
+
+//使用函数实现两个数的交换。
+#include<stdio.h>
+void swap(int *x, int *y)
 {
-	//int i,j;
-	//for(i = j = 1; i; j++ < 7 ? i++ : i--)
-	//{
-	//	printf("%*.*s\n",7+i,(i << 1) - 1,"*************");
-	//}
-	int i,j,k;
-	for(i = 1;i <= 7;i++)//先打印上边的七行
-	{
-		for(j = 1;j <= 7 - i;j++)//控制要打印的空格数量
-		{
-			printf(" ");
-		}
-		for(k = 1;k <= 2 * i - 1;k++) //控制要打印的星号数
-		{
-			printf("*");
-		}
-		printf("\n");
-	}
-	for(i = 1;i <= 6;i++)//打印下面的六行
-	{
-		for(j = 1;j <= i;j++)
-		{
-			printf(" ");
-		}
-		for(k = 1;k <= 13 - 2 * i;k++)
-		{
-			printf("*");
-		}
-		printf("\n");
-	}
-	return 0;
+    int t;
+    t=*x;
+    *x=*y;
+    *y=t;
+}
+int main()
+{
+    int a=1,b=2;
+    swap(&a,&b);
+    printf("a=%d,b=%d\n",a,b);
+    return 0;
 }
