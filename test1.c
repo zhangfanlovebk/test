@@ -2306,18 +2306,73 @@ int main()
 //}
 
 //使用函数实现两个数的交换。
+//#include<stdio.h>
+//
+//void swap(int *x, int *y)
+//{
+//    int t;
+//    t=*x;
+//    *x=*y;
+//    *y=t;
+//}
+//
+//int main()
+//{
+//    int a=1,b=2;
+//    swap(&a,&b);
+//    printf("a=%d,b=%d\n",a,b);
+//    return 0;
+//}
+
+//#include <stdio.h>
+//#include <windows.h>
+//int main()
+//{
+//	int ret1=15^8;//都在2的平方到2的立方范围，则得到较小值
+//	//int ret2=15|10;//。。。。。。。。。。。。则得到较大值
+//	//int ret3=15^10;//。。。。。。。。。。。。则得到差值
+//	printf("%d\n",ret1);
+//	//int end=0;
+//	//end=GetTickCount();//从系统启动到当前所用时间
+//	//printf("%d\n",end-start);
+//	//char a[10]="ahksfjenk";
+//	//printf("%s\n",a);
+//	//printf("%d\n",strlen(a));
+//	//printf("%d\n",sizeof(a));
+//
+//	return 0;
+//}
+
+//#include <stdio.h>
+//int main()
+//{
+//	char a=-1;
+//	signed char b=-1;
+//	unsigned char c=-1;
+//	printf("a=%d\nb=%d\nc=%d\n",a,b,c);//-1,-1,255
+//	return 0;
+//}
+
 #include<stdio.h>
-void swap(int *x, int *y)
+#include<assert.h>
+
+char* my_strcpy(char* dst, const char* src)
 {
-    int t;
-    t=*x;
-    *x=*y;
-    *y=t;
+	char* ret = dst;
+	assert(dst);
+	assert(src);
+	while(*dst++ = *src++)
+	{
+		;
+	}
+	return ret;
 }
+
 int main()
 {
-    int a=1,b=2;
-    swap(&a,&b);
-    printf("a=%d,b=%d\n",a,b);
-    return 0;
+	char dst[50];
+	const char* msg = "hello world";
+	my_strcpy(dst,msg);
+	printf("%s\n",dst);
+	return 0;
 }
