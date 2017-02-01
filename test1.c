@@ -2355,7 +2355,6 @@ int main()
 
 #include<stdio.h>
 #include<assert.h>
-
 int my_strcmp(const char* str1,const char* str2)
 {
 	assert(str1);
