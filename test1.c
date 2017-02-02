@@ -2353,52 +2353,80 @@ int main()
 //	return 0;
 //}
 
-#include<stdio.h>
-#include<assert.h>
-int my_strcmp(const char* str1,const char* str2)
+//#include<stdio.h>
+//#include<assert.h>
+//int my_strcmp(const char* str1,const char* str2)
+//{
+//	assert(str1);
+//	assert(str2);
+//	while(*str1 != '\0' && *str2 != '\0'){
+//		if(*str1 == *str2){
+//			str1++;
+//			str2++;
+//		}
+//		if(*str1 > *str2){
+//			return 1;
+//		}
+//		if(*str1 < *str2){
+//			return -1;
+//		}
+//	}
+//	if(*str1 == '\0' && *str2 != '\0'){
+//		return -1;
+//	}
+//	if(*str1 != '\0' && *str2 == '\0'){
+//		return 1;
+//	}
+//	return 0;
+//}
+//
+//char* my_strcpy(char* dst, const char* src)
+//{
+//	char* ret = dst;
+//	assert(dst);
+//	assert(src);
+//	while(*dst++ = *src++)
+//	{
+//		;
+//	}
+//	return ret;
+//}
+//
+//int main()
+//{
+//	char dst[50];
+//	const char* msg = "hello world";
+//	const char* msg1 = "hello bit";
+//	my_strcpy(dst,msg);
+//	printf("%s\n",dst);
+//	printf("%d\n",(my_strcmp(msg,msg1)));
+//	return 0;
+//}
+
+//判断大小端
+#include <stdio.h>
+
+int is_system()
 {
-	assert(str1);
-	assert(str2);
-	while(*str1 != '\0' && *str2 != '\0'){
-		if(*str1 == *str2){
-			str1++;
-			str2++;
-		}
-		if(*str1 > *str2){
-			return 1;
-		}
-		if(*str1 < *str2){
-			return -1;
-		}
+	union A{
+		int a;
+		char c;
+	}obj;
+	obj.a = 1;
+	if(obj.c == 1){
+		return 1;//data is 小端
 	}
-	if(*str1 == '\0' && *str2 != '\0'){
-		return -1;
-	}
-	if(*str1 != '\0' && *str2 == '\0'){
-		return 1;
-	}
-	return 0;
+	return 0;//大端
+
+	//int a = 1;
+	//if(*((char*)&a) == 1){
+	//	return 1;//小端
+	//}
+	//return 0;
 }
 
-char* my_strcpy(char* dst, const char* src)
+int main ()
 {
-	char* ret = dst;
-	assert(dst);
-	assert(src);
-	while(*dst++ = *src++)
-	{
-		;
-	}
-	return ret;
-}
-
-int main()
-{
-	char dst[50];
-	const char* msg = "hello world";
-	const char* msg1 = "hello bit";
-	my_strcpy(dst,msg);
-	printf("%s\n",dst);
-	printf("%d\n",(my_strcmp(msg,msg1)));
+	printf("%d\n",is_system());
 	return 0;
 }
