@@ -2404,29 +2404,115 @@ int main()
 //}
 
 //判断大小端
+//#include <stdio.h>
+//
+//int is_system()
+//{
+//	union A{
+//		int a;
+//		char c;
+//	}obj;
+//	obj.a = 1;
+//	if(obj.c == 1){
+//		return 1;//data is 小端
+//	}
+//	return 0;//大端
+//
+//	//int a = 1;
+//	//if(*((char*)&a) == 1){
+//	//	return 1;//小端
+//	//}
+//	//return 0;
+//}
+//
+//int main ()
+//{
+//	printf("%d\n",is_system());//小端
+//	return 0;
+//}
+
+//#include <stdio.h>
+//struct A{
+//	unsigned int a : 2;
+//	//unsigned int e;
+//	unsigned int b : 6;
+//	unsigned int c : 13;
+//}obj;
+//
+//struct B{
+//	unsigned short a : 2;
+//	unsigned short e;
+//	unsigned short b : 6;
+//	unsigned short c : 13;
+//}obj_b;
+//
+//struct C{
+//	unsigned char a : 2;//最大数不能超过8
+//	//unsigned char e;
+//	unsigned char b : 6;
+//	unsigned char c : 7;
+//}obj_c;						//double型按int型计算，不是8
+//
+//int main ()
+//{
+//	printf("%d\n",sizeof(obj));		//4
+//	printf("%d\n",sizeof(obj_b));	//8
+//	printf("%d\n",sizeof(obj_c));	//2
+//	return 0;
+//}
+
+
+//#include <stdio.h>
+//
+////#pragma pack (4)
+////#pragma pack ()
+//union {		//联合体
+//	int b;
+//	double c;
+//	char d[9];
+//}obj;//对齐：按成员最大的计算；
+//	//整体大小为“默认对齐数与成员最大类型大小”较小值整数倍。
+//
+////struct A{
+////	int a;
+////	union {
+////		int b;
+////		char c;
+////		char d[5];
+////	};
+////	struct{
+////		int e;
+////		double f;
+////		char g[5];
+////	};
+////	double x;
+////}obj;
+//
+//int main()
+//{
+//	printf("%d\n",sizeof(obj));
+//	return 0;
+//}
+
+
+//结构体内存对齐
+//1.第一个成员无对齐数；
+//2.从第二个开始的成员对齐到“对齐数”的整数倍处；
+//	对齐数：默认对齐数与该成员大小的较小值。
+//3.结构体总大小为“最大对齐数”的整数倍；
+//4.嵌套结构体，则整体大小为：所有最大对齐数整数倍。
+#pragma pack(4)
 #include <stdio.h>
-
-int is_system()
-{
-	union A{
-		int a;
-		char c;
-	}obj;
-	obj.a = 1;
-	if(obj.c == 1){
-		return 1;//data is 小端
-	}
-	return 0;//大端
-
-	//int a = 1;
-	//if(*((char*)&a) == 1){
-	//	return 1;//小端
-	//}
-	//return 0;
-}
+struct A{
+	double a;
+	int b;
+	int c;
+	char d;
+	double e;
+}obj;
 
 int main ()
 {
-	printf("%d\n",is_system());
+	printf("%d\n",sizeof(obj));//28;若默认为8，大小为32
 	return 0;
 }
