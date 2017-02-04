@@ -2501,18 +2501,55 @@ int main()
 //	对齐数：默认对齐数与该成员大小的较小值。
 //3.结构体总大小为“最大对齐数”的整数倍；
 //4.嵌套结构体，则整体大小为：所有最大对齐数整数倍。
-#pragma pack(4)
-#include <stdio.h>
-struct A{
-	double a;
-	int b;
-	int c;
-	char d;
-	double e;
-}obj;
+//#pragma pack(4)
+//#include <stdio.h>
+//struct A{
+//	double a;
+//	int b;
+//	int c;
+//	char d;
+//	double e;
+//}obj;
+//
+//int main ()
+//{
+//	printf("%d\n",sizeof(obj));//28;若默认为8，大小为32
+//	return 0;
+//}
 
+//#include <stdio.h>
+//int main ()
+//{
+//	const char *msg = "hello \n";
+//	int i = 5;
+//	char buf[300];
+//	FILE *fp = fopen("2017_2_4.txt","r");
+//	if(NULL == fp){
+//		perror("fopen");
+//		return 1;
+//	}
+//	while(fgets(buf,sizeof(buf),fp) != NULL){
+//		printf("%s",buf);
+//	}
+//	//while( i-- ){
+//	//	fputs(msg,fp);
+//	//}
+//	printf("fopen success\n");
+//	fclose(fp);
+//	printf("fclose done...\n");
+//	return 0;
+//}
+
+#include <stdio.h>
 int main ()
 {
-	printf("%d\n",sizeof(obj));//28;若默认为8，大小为32
+	int a = 1234;
+	char buf[32];
+	sprintf(buf,"%d",a);
+	printf("%s\n",buf);
+	//char a[]="1234";
+	//int b = 0;
+	//sscanf(a,"%d",&b);
+	//printf("%d\n",b);
 	return 0;
 }
