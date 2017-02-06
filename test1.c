@@ -2518,6 +2518,7 @@ int main()
 //}
 
 //#include <stdio.h>
+//#include <windows.h>
 //int main ()
 //{
 //	const char *msg = "hello \n";
@@ -2526,7 +2527,7 @@ int main()
 //	FILE *fp = fopen("2017_2_4.txt","r");
 //	if(NULL == fp){
 //		perror("fopen");
-//		return 1;
+//		exit (1);
 //	}
 //	while(fgets(buf,sizeof(buf),fp) != NULL){
 //		printf("%s",buf);
@@ -2537,19 +2538,54 @@ int main()
 //	printf("fopen success\n");
 //	fclose(fp);
 //	printf("fclose done...\n");
+//	system("pause");
 //	return 0;
 //}
 
+//#include <stdio.h>
+//int main ()
+//{
+//	int a = 1234;
+//	char buf[32];
+//	sprintf(buf,"%d",a);
+//	printf("%s\n",buf);
+//	//char a[]="1234";
+//	//int b = 0;
+//	//sscanf(a,"%d",&b);
+//	//printf("%d\n",b);
+//	return 0;
+//}
+
+//球从100米落下，每次反弹一半高度，求第十次的
+//反弹高度与经过的总路程。
+//#include <stdio.h>
+//int main ()
+//{
+//	double a = 100.00;
+//	double sum = 100.00;
+//	int i = 0;
+//	for(i = 0;i < 10;i++){
+//		a /= 2;
+//		sum += a;
+//	}
+//	printf("high:%lf\nsum:%lf\n",a,sum);
+//	return 0;
+//}
+
+//猴子摘了好多桃，每天吃一半零一个，第十天发现剩一个，求摘的桃数
 #include <stdio.h>
 int main ()
 {
-	int a = 1234;
-	char buf[32];
-	sprintf(buf,"%d",a);
-	printf("%s\n",buf);
-	//char a[]="1234";
-	//int b = 0;
-	//sscanf(a,"%d",&b);
-	//printf("%d\n",b);
+	//int sum = 1;
+	//int i = 0;
+	//for(i = 0;i < 9;i++){
+	//	sum = (sum + 1) * 2;
+	//}
+	//printf("%d\n",sum);
+	int t,x = 1;
+	for(t = 9;t >= 1;t--){
+		x = (x + 1) * 2;
+	}
+	printf("%d\n",x);
 	return 0;
 }
