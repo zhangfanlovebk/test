@@ -2404,6 +2404,7 @@ int main()
 //}
 
 //判断大小端
+//小端：低位在低地址。大端：低位在高地址。
 //#include <stdio.h>
 //
 //int is_system()
@@ -2573,19 +2574,198 @@ int main()
 //}
 
 //猴子摘了好多桃，每天吃一半零一个，第十天发现剩一个，求摘的桃数
-#include <stdio.h>
-int main ()
+//#include <stdio.h>
+//int main ()
+//{
+//	//int sum = 1;
+//	//int i = 0;
+//	//for(i = 0;i < 9;i++){
+//	//	sum = (sum + 1) * 2;
+//	//}
+//	//printf("%d\n",sum);
+//	int t,x = 1;
+//	for(t = 9;t >= 1;t--){
+//		x = (x + 1) * 2;
+//	}
+//	printf("%d\n",x);
+//	return 0;
+//}
+
+
+#ifndef _SEQUENCELIST_H_
+#define _SEQUENCELIST_H
+
+#include<assert.h>
+#include<stdio.h>
+#include<memory.h>
+#include<Windows.h>
+typedef int DataType;
+typedef unsigned int size_t;
+#define MAXSIZE 10
+
+typedef struct SeqList
 {
-	//int sum = 1;
-	//int i = 0;
-	//for(i = 0;i < 9;i++){
-	//	sum = (sum + 1) * 2;
-	//}
-	//printf("%d\n",sum);
-	int t,x = 1;
-	for(t = 9;t >= 1;t--){
-		x = (x + 1) * 2;
+	DataType array[MAXSIZE];
+	DataType size;
+}SeqList,*pSeqList;
+
+//*************************************************
+
+//初始化顺序表
+void InitSeqList(pSeqList pSeq);
+
+//打印顺序表
+void PrintSeqList(pSeqList pSeq);
+
+//在顺序表尾部插入值为data的元素
+void PushBack(pSeqList pSeq, DataType data);
+
+//删除顺序表的最后一个元素
+void PopBack(pSeqList pSeq);
+
+//在顺序表的头部插入值为data的元素
+void PushFront(pSeqList pSeq, DataType data);
+
+//删除顺序表头部元素
+void PopFront(pSeqList pSeq);
+
+//在顺序表中pos位置上插入值为data的元素
+void Insert(pSeqList pSeq,size_t pos,DataType data);
+
+//删除顺序表中pos位置上的元素
+void Erase(pSeqList pSeq, size_t pos);
+
+//在顺序表中查找值为data的元素，找到返回该元素的位置，否则返回-1
+int Find(pSeqList pSeq, DataType data);
+
+//删除顺序表中第一个值为data的元素
+void Remove(pSeqList pSeq, DataType data);
+
+//删除顺序表中所有值为data的元素
+void RemoveAll(pSeqList pSeq, DataType data);
+
+//使用冒泡排序给顺序表中的元素排序
+void BubbleSort(pSeqList pSeq);
+
+//使用选择排序给顺序表中的元素排序
+void SelectSort(pSeqList pSeq);
+
+//使用二分查找在顺序表中查找值为data的元素
+int BinarySearch(pSeqList pSeq, DataType data);
+
+//*************************************************
+
+#endif
+
+
+void InitSeqList(pSeqList pSeq)
+{
+	//assert(pSeq);
+
+	memset(pSeq->array, 0, sizeof(pSeq->array));
+	pSeq->size = 0;
+}
+
+void PrintSeqList(pSeqList pSeq)
+{
+	int count = 0;
+	assert(pSeq);
+	if (pSeq->size == 0)
+	{
+		return;
 	}
-	printf("%d\n",x);
+	while (count < pSeq->size)
+	{
+		printf("%d->", pSeq->array[count]);
+		count++;
+	}
+	printf("\n");
+}
+
+void PushBack(pSeqList pSeq, DataType data)//尾插
+{
+	assert(pSeq);
+
+	if (pSeq->size >= MAXSIZE)
+	{
+		return;
+	}
+	pSeq->size++;
+	pSeq->array[pSeq->size-1] = data;
+
+}
+
+void PopBack(pSeqList pSeq) //尾删
+{
+	assert(pSeq);
+
+	if (pSeq->size <= 0)
+	{
+		return;
+	}
+	pSeq->size--;
+}
+
+void PushFront(pSeqList pSeq,DataType data) //头插
+{
+	int idx = 0;
+	assert(pSeq);
+
+	if (pSeq->size >= MAXSIZE)
+	{
+		return;
+	}
+	for (idx = pSeq->size-1; idx >= 0; idx--)
+	{
+		pSeq->array[idx+1] = pSeq->array[idx];
+	}
+	pSeq->array[0] = data;
+	pSeq->size++;
+}
+
+void PopFront(pSeqList pSeq) //头删
+{
+	int idx = 0;
+	assert(pSeq);
+
+	if (pSeq->size == 0)
+	{
+		return;
+	}
+	for (idx = 0; idx < pSeq->size-1; idx++)
+	{
+		pSeq->array[idx] = pSeq->array[idx + 1];
+	}
+	pSeq->size--;
+}
+
+
+void Function1()
+{
+	SeqList pSeq;
+	InitSeqList(&pSeq);
+	//PrintSeqList(&pSeq);
+	PushBack(&pSeq, 2);
+	PushBack(&pSeq, 4);
+	PushBack(&pSeq, 1);
+	PrintSeqList(&pSeq);//241
+
+	PopBack(&pSeq);
+	PrintSeqList(&pSeq);//24
+
+	PushFront(&pSeq, 8);
+	PushFront(&pSeq, 9);
+	PushFront(&pSeq, 5);
+	PrintSeqList(&pSeq);//59824
+
+	PopFront(&pSeq);
+	PrintSeqList(&pSeq);//9824
+}
+
+int main()
+{
+	Function1();
+	system("pause");
 	return 0;
 }
+
