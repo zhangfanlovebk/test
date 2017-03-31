@@ -2769,9 +2769,25 @@ int main()
 //	return 0;
 //}
 
+//输入行数打印乘法口诀表
 #include <stdio.h>
+void mul(int n)
+{
+	int i,j;
+	for(i = 1;i <= n;i++){
+		for(j = 1;j <= i;j++){
+			printf("%2d*%2d=%3d ",j,i,i*j);//其中%2d中的2表示输出两格，数向后靠齐
+		}
+		printf("\n");
+	}
+}
+
 int main()
 {
-	printf("hello world!\n");
+	int n = 0;
+	printf("请输入要打印乘法口诀行数：");
+	scanf("%d",&n);
+	mul(n);
 	return 0;
 }
+
