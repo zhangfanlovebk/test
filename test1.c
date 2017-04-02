@@ -2770,24 +2770,72 @@ int main()
 //}
 
 //输入行数打印乘法口诀表
-#include <stdio.h>
-void mul(int n)
-{
-	int i,j;
-	for(i = 1;i <= n;i++){
-		for(j = 1;j <= i;j++){
-			printf("%2d*%2d=%3d ",j,i,i*j);//其中%2d中的2表示输出两格，数向后靠齐
-		}
-		printf("\n");
-	}
-}
+//#include <stdio.h>
+//void mul(int n)
+//{
+//	int i,j;
+//	for(i = 1;i <= n;i++){
+//		for(j = 1;j <= i;j++){
+//			printf("%2d*%2d=%3d ",j,i,i*j);//其中%2d中的2表示输出两格，数向后靠齐
+//		}
+//		printf("\n");
+//	}
+//}
+//
+//int main()
+//{
+//	int n = 0;
+//	printf("请输入要打印乘法口诀行数：");
+//	scanf("%d",&n);
+//	mul(n);
+//	return 0;
+//}
 
-int main()
-{
-	int n = 0;
-	printf("请输入要打印乘法口诀行数：");
-	scanf("%d",&n);
-	mul(n);
-	return 0;
-}
+//#include <stdio.h>
+//int sum()
+//{
+//	int i = 0;
+//	int j = 0;
+//	for(i = 0; i <= 100;i++){
+//		j += i;
+//	}
+//	return j;
+//}
+//
+//int main()
+//{
+//	printf("%d\n",sum());
+//	return 0;
+//}
 
+
+//旋转字符
+#include<stdio.h>  
+#include<string.h>  
+void reverse(char *left, char *right)  
+{  
+    while (left < right)  
+    {  
+        char tmp = *left;  
+        *left = *right;  
+        *right = tmp;  
+        left++;  
+        right--;  
+    }  
+}  
+void left_move(char *p, int n)  
+{  
+    int len = strlen(p);  
+    reverse(p, p + n - 1);  
+    reverse(p + n, p + len - 1);  
+    reverse(p, p + len - 1);  
+}  
+int main()  
+{  
+    char arr[] = "abcdef";  
+    int n = 0;  
+    scanf_s("%d", &n);  
+    left_move(arr, n);  
+    printf("%s\n", arr);  
+    return 0;  
+}
