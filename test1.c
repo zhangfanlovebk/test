@@ -2810,32 +2810,61 @@ int main()
 
 
 //旋转字符
-#include<stdio.h>  
-#include<string.h>  
-void reverse(char *left, char *right)  
-{  
-    while (left < right)  
-    {  
-        char tmp = *left;  
-        *left = *right;  
-        *right = tmp;  
-        left++;  
-        right--;  
-    }  
-}  
-void left_move(char *p, int n)  
-{  
-    int len = strlen(p);  
-    reverse(p, p + n - 1);  
-    reverse(p + n, p + len - 1);  
-    reverse(p, p + len - 1);  
-}  
-int main()  
-{  
-    char arr[] = "abcdef";  
-    int n = 0;  
-    scanf_s("%d", &n);  
-    left_move(arr, n);  
-    printf("%s\n", arr);  
-    return 0;  
+//#include<stdio.h>  
+//#include<string.h>  
+//void reverse(char *left, char *right)  
+//{  
+//    while (left < right)  
+//    {  
+//        char tmp = *left;  
+//        *left = *right;  
+//        *right = tmp;  
+//        left++;  
+//        right--;  
+//    }  
+//}  
+//void left_move(char *p, int n)  
+//{  
+//    int len = strlen(p);  
+//    reverse(p, p + n - 1);  
+//    reverse(p + n, p + len - 1);  
+//    reverse(p, p + len - 1);  
+//}  
+//int main()  
+//{  
+//    char arr[] = "abcdef";  
+//    int n = 0;  
+//    scanf_s("%d", &n);  
+//    left_move(arr, n);  
+//    printf("%s\n", arr);  
+//    return 0;  
+//}
+
+//函数实现闰年判断
+#include <stdio.h>
+
+int leap_year(int year)
+{
+	if(((year % 4 == 0) && (year % 100 != 0))||(year % 400 == 0))
+		return 1;
+	else
+		return 0;
 }
+
+int main()
+{
+	int year;
+	int ret;
+	scanf("%d",&year);
+	ret = leap_year(year);
+	if(ret == 1)
+	{
+		printf("%d是闰年\n",year);
+	}
+	else
+	{
+		printf("%d非闰年\n",year);
+	}
+	return 0;
+}
+
