@@ -2841,30 +2841,63 @@ int main()
 //}
 
 //函数实现闰年判断
-#include <stdio.h>
+//#include <stdio.h>
+//
+//int leap_year(int year)
+//{
+//	if(((year % 4 == 0) && (year % 100 != 0))||(year % 400 == 0))
+//		return 1;
+//	else
+//		return 0;
+//}//闰年能被4整除且不能100整除、或能被400整除
+//
+//int main()
+//{
+//	int year;
+//	int ret;
+//	scanf("%d",&year);
+//	ret = leap_year(year);
+//	if(ret == 1)
+//	{
+//		printf("%d是闰年\n",year);
+//	}
+//	else
+//	{
+//		printf("%d非闰年\n",year);
+//	}
+//	return 0;
+//}
 
-int leap_year(int year)
+
+//判断素数
+#include <stdio.h>
+#include <math.h>
+int prime(int num)
 {
-	if(((year % 4 == 0) && (year % 100 != 0))||(year % 400 == 0))
-		return 1;
-	else
-		return 0;
+	int i = 0;
+	int k = 0;
+	k = sqrt(num);
+	for(i = 2;i <= k;i++)
+	{
+		if(num % i == 0){
+			return 0;
+		}
+	}
+	return 1;
 }
 
 int main()
 {
-	int year;
-	int ret;
-	scanf("%d",&year);
-	ret = leap_year(year);
-	if(ret == 1)
-	{
-		printf("%d是闰年\n",year);
+	int num = 0;
+	int ret = 0;
+	printf("请输入大于1的整数：\n");
+	scanf("%d",&num);
+	ret = prime(num);
+	if(ret == 0){
+		printf("%d不是素数\n",num);
 	}
-	else
-	{
-		printf("%d非闰年\n",year);
+	else{
+		printf("%d是素数\n",num);
 	}
 	return 0;
 }
-
