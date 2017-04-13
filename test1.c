@@ -2870,34 +2870,89 @@ int main()
 
 
 //判断素数
+//#include <stdio.h>
+//#include <math.h>
+//int prime(int num)//prime素数
+//{
+//	int i = 0;
+//	int k = 0;
+//	k = sqrt(num);
+//	for(i = 2;i <= k;i++)
+//	{
+//		if(num % i == 0){
+//			return 0;
+//		}
+//	}
+//	return 1;
+//}
+//
+//int main()
+//{
+//	int num = 0;
+//	int ret = 0;
+//	printf("请输入大于1的整数：\n");
+//	scanf("%d",&num);
+//	ret = prime(num);
+//	if(ret == 0){
+//		printf("%d不是素数\n",num);
+//	}
+//	else{
+//		printf("%d是素数\n",num);
+//	}
+//	return 0;
+//}
+
+
+//创建一个数组，
+//实现函数init（）初始化数组、
+//实现empty（）清空数组、
+//实现reverse（）函数完成数组元素的逆置
 #include <stdio.h>
-#include <math.h>
-int prime(int num)
+
+int init(int arr[],int len)
 {
 	int i = 0;
-	int k = 0;
-	k = sqrt(num);
-	for(i = 2;i <= k;i++)
+	printf("初始化数组：\n");
+	for(i = 0;i < len;i++)
 	{
-		if(num % i == 0){
-			return 0;
-		}
+		scanf("%d",&arr[i]);
 	}
-	return 1;
+	return 0;
+}
+
+int reverse(int arr[],int len)
+{
+	int i = 0;
+	printf("逆置数组：\n");
+	for(i = (len-1);i >= 0;i--)
+	{
+		printf("%d ",arr[i]);
+	}
+	return 0;
+}
+
+int empty(int arr[],int len)
+{
+	int i = 0;
+	printf("清空数组：\n");
+	for(i = 0;i < len;i++)
+	{
+		arr[i] = 0;
+		printf("%d ",arr[i]);
+	}
+	printf("\n");
+	return 0;
 }
 
 int main()
 {
-	int num = 0;
-	int ret = 0;
-	printf("请输入大于1的整数：\n");
-	scanf("%d",&num);
-	ret = prime(num);
-	if(ret == 0){
-		printf("%d不是素数\n",num);
-	}
-	else{
-		printf("%d是素数\n",num);
-	}
+	int arr[5];
+	int len = 0;
+	len = sizeof(arr)/sizeof(arr[0]);
+	init(arr,len);
+	reverse(arr,len);
+	printf("\n");
+	empty(arr,len);
 	return 0;
 }
+
