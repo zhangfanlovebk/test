@@ -2907,52 +2907,78 @@ int main()
 //实现函数init（）初始化数组、
 //实现empty（）清空数组、
 //实现reverse（）函数完成数组元素的逆置
+//#include <stdio.h>
+//
+//int init(int arr[],int len)
+//{
+//	int i = 0;
+//	printf("初始化数组：\n");
+//	for(i = 0;i < len;i++)
+//	{
+//		scanf("%d",&arr[i]);
+//	}
+//	return 0;
+//}
+//
+//int reverse(int arr[],int len)
+//{
+//	int i = 0;
+//	printf("逆置数组：\n");
+//	for(i = (len-1);i >= 0;i--)
+//	{
+//		printf("%d ",arr[i]);
+//	}
+//	return 0;
+//}
+//
+//int empty(int arr[],int len)
+//{
+//	int i = 0;
+//	printf("清空数组：\n");
+//	for(i = 0;i < len;i++)
+//	{
+//		arr[i] = 0;
+//		printf("%d ",arr[i]);
+//	}
+//	printf("\n");
+//	return 0;
+//}
+//
+//int main()
+//{
+//	int arr[5];
+//	int len = 0;
+//	len = sizeof(arr)/sizeof(arr[0]);
+//	init(arr,len);
+//	reverse(arr,len);
+//	printf("\n");
+//	empty(arr,len);
+//	return 0;
+//}
+
+//两个int（32位）整数m和n的二进制表达中，有多少个位(bit)不同
 #include <stdio.h>
-
-int init(int arr[],int len)
+int main ()
 {
-	int i = 0;
-	printf("初始化数组：\n");
-	for(i = 0;i < len;i++)
+	int m,n,i;
+	int count = 0;
+	printf("请输入两个整数：\n");
+	scanf("%d%d",&m,&n);
+	i = m ^ n;
+	while(i)//方法一
 	{
-		scanf("%d",&arr[i]);
+		count++;
+		i &= (i - 1);
 	}
+	//for(i = 0;i < 32;i++)//方法二
+	//{
+	//	if((m & 1) != (n & 1))
+	//	{
+	//		count++;
+	//	}
+	//	m >>= 1;
+	//	n >>= 1;
+	//}
+	printf("%d\n",count);
 	return 0;
 }
-
-int reverse(int arr[],int len)
-{
-	int i = 0;
-	printf("逆置数组：\n");
-	for(i = (len-1);i >= 0;i--)
-	{
-		printf("%d ",arr[i]);
-	}
-	return 0;
-}
-
-int empty(int arr[],int len)
-{
-	int i = 0;
-	printf("清空数组：\n");
-	for(i = 0;i < len;i++)
-	{
-		arr[i] = 0;
-		printf("%d ",arr[i]);
-	}
-	printf("\n");
-	return 0;
-}
-
-int main()
-{
-	int arr[5];
-	int len = 0;
-	len = sizeof(arr)/sizeof(arr[0]);
-	init(arr,len);
-	reverse(arr,len);
-	printf("\n");
-	empty(arr,len);
-	return 0;
-}
-
