@@ -2958,28 +2958,60 @@ int main()
 
 //两个int（32位）整数m和n的二进制表达中，有多少个位(bit)不同
 //先异或后移位
+//#include <stdio.h>
+//int main ()
+//{
+//	int m,n,i;
+//	int count = 0;
+//	printf("请输入两个整数：\n");
+//	scanf("%d%d",&m,&n);
+//	i = m ^ n;	//“相同为零、不同为一”得出不同位数i,继续检测i
+//	while(i)//方法一
+//	{
+//		count++;
+//		i &= (i - 1);//“与零或一”
+//	}
+//	//for(i = 0;i < 32;i++)//方法二
+//	//{
+//	//	if((m & 1) != (n & 1))//移位
+//	//	{
+//	//		count++;
+//	//	}
+//	//	m >>= 1;
+//	//	n >>= 1;
+//	//}
+//	printf("%d\n",count);
+//	return 0;
+//}
+
+
+//不使用（a+b）/2这种方式，求两个数的平均值
+//#include <stdio.h>
+//int main()
+//{
+//	float a,b,mid;
+//	print
+//	scanf("%f%f",&a,&b);
+//	mid = a - (a - b)/2;
+//	printf("平均值为：%f\n",mid);
+//	return 0;
+//}
+
+
+
+//一组数据中只有一个数字出现了一次。
+//其他所有数字都是成对出现的。请找出这个数字。
+//使用位运算,异或可以抵消相同的数字
 #include <stdio.h>
-int main ()
+int main()
 {
-	int m,n,i;
-	int count = 0;
-	printf("请输入两个整数：\n");
-	scanf("%d%d",&m,&n);
-	i = m ^ n;	//“相同为零、不同为一”得出不同位数i,继续检测i
-	while(i)//方法一
-	{
-		count++;
-		i &= (i - 1);//“与零或一”
-	}
-	//for(i = 0;i < 32;i++)//方法二
-	//{
-	//	if((m & 1) != (n & 1))//移位
-	//	{
-	//		count++;
-	//	}
-	//	m >>= 1;
-	//	n >>= 1;
-	//}
-	printf("%d\n",count);
-	return 0;
+    int i,arr[]={1,3,5,7,9,1,3,5,7};
+    for(i = 1;i < sizeof(arr)/sizeof(arr[0]);i++)
+    {
+        arr[0] = arr[0] ^ arr[i];
+    }
+    printf("The single number is:%d\n",arr[0]);
+    return 0;
 }
+
+
