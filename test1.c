@@ -3002,16 +3002,44 @@ int main()
 //一组数据中只有一个数字出现了一次。
 //其他所有数字都是成对出现的。请找出这个数字。
 //使用位运算,异或可以抵消相同的数字
+//#include <stdio.h>
+//int main()
+//{
+//    int i,arr[]={1,3,5,7,9,1,3,5,7};
+//    for(i = 1;i < sizeof(arr)/sizeof(arr[0]);i++)
+//    {
+//        arr[0] = arr[0] ^ arr[i];
+//    }
+//    printf("The single number is:%d\n",arr[0]);
+//    return 0;
+//}
+
+//unsigned int  reverse_bit(unsigned int value);
+//这个函数的返回 值value的二进制位模式从左到右翻转后的值。
+//如：
+//在32位机器上25这个值包含下列各位：
+//00000000000000000000000000011001
+//翻转后：（2550136832）
+//10011000000000000000000000000000
 #include <stdio.h>
-int main()
+
+int reverse_bit(unsigned int value)
 {
-    int i,arr[]={1,3,5,7,9,1,3,5,7};
-    for(i = 1;i < sizeof(arr)/sizeof(arr[0]);i++)
+    int bit = 0,a = 0;
+    int i;
+    for(i = 0;i < 32;i++)
     {
-        arr[0] = arr[0] ^ arr[i];
+        a <<= 1;                    //左移一位，保存前一位
+        bit = value & 1;            //取出最后一位给bit
+        value >>= 1;                //值右移，取下一位
+        a |= bit;                   //最后一位给a
     }
-    printf("The single number is:%d\n",arr[0]);
-    return 0;
+    return a;
 }
 
+int main ()
+{
+    printf("%u\n",reverse_bit(25));
+    return 0;
+}
 
