@@ -3021,25 +3021,51 @@ int main()
 //00000000000000000000000000011001
 //翻转后：（2550136832）
 //10011000000000000000000000000000
-#include <stdio.h>
+//#include <stdio.h>
+//
+//int reverse_bit(unsigned int value)
+//{
+//    int bit = 0,a = 0;
+//    int i;
+//    for(i = 0;i < 32;i++)
+//    {
+//        a <<= 1;                    //左移一位，保存前一位
+//        bit = value & 1;            //取出最后一位给bit
+//        value >>= 1;                //值右移，取下一位
+//        a |= bit;                   //最后一位给a
+//    }
+//    return a;
+//}
+//
+//int main ()
+//{
+//    printf("%u\n",reverse_bit(25));
+//    return 0;
+//}
 
-int reverse_bit(unsigned int value)
+
+//模拟实现strcpy---------------------------不懂不懂不懂不懂不懂不懂不懂不懂不懂不懂不懂
+#include<stdio.h>
+#include<stdlib.h>
+#include<assert.h>
+char* my_strcpy(char* dest, const char* src) //const使在函数中不能修改*src原先的值 
 {
-    int bit = 0,a = 0;
-    int i;
-    for(i = 0;i < 32;i++)
+    char* strdest = dest;    //保存原始指针地址
+    assert(dest);    //两次断言-->检验参数，增加代码健壮性 
+    assert(src);
+
+    while (*src)
     {
-        a <<= 1;                    //左移一位，保存前一位
-        bit = value & 1;            //取出最后一位给bit
-        value >>= 1;                //值右移，取下一位
-        a |= bit;                   //最后一位给a
+        *dest++ = *src++;
     }
-    return a;
+    *dest = '\0';
+    return strdest;
 }
-
-int main ()
+int main()
 {
-    printf("%u\n",reverse_bit(25));
+    char arr1[] = "hello world!";
+    char arr2[20] ;
+    char* ret = my_strcpy(arr2, arr1);
+    printf("%s\n", ret);
     return 0;
 }
-
