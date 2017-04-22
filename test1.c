@@ -3044,28 +3044,52 @@ int main()
 //}
 
 
-//模拟实现strcpy---------------------------不懂不懂不懂不懂不懂不懂不懂不懂不懂不懂不懂
-#include<stdio.h>
-#include<stdlib.h>
-#include<assert.h>
-char* my_strcpy(char* dest, const char* src) //const使在函数中不能修改*src原先的值 
-{
-    char* strdest = dest;    //保存原始指针地址
-    assert(dest);    //两次断言-->检验参数，增加代码健壮性 
-    assert(src);
+//模拟实现strcpy
+//#include<stdio.h>
+//#include<stdlib.h>
+//#include<assert.h>
+//char* my_strcpy(char* dest, const char* src) //const使在函数中不能修改*src原先的值 
+//{
+//    char* strdest = dest;    //保存原始指针地址
+//    assert(dest);    //两次断言-->检验参数，增加代码健壮性 
+//    assert(src);
+//
+//    while (*src)
+//    {
+//        *dest++ = *src++;
+//    }
+//    *dest = '\0';
+//    return strdest;
+//}
+//int main()
+//{
+//    char arr1[] = "hello world!";
+//    char arr2[20] ;
+//    char* ret = my_strcpy(arr2, arr1);
+//    printf("%s\n", ret);
+//    return 0;
+//}
 
-    while (*src)
-    {
-        *dest++ = *src++;
-    }
-    *dest = '\0';
-    return strdest;
-}
-int main()
+//模拟实现strlen
+#include <stdio.h>
+#include <assert.h>
+#include <stdlib.h>
+
+int my_strlen(const char* str)
 {
-    char arr1[] = "hello world!";
-    char arr2[20] ;
-    char* ret = my_strcpy(arr2, arr1);
-    printf("%s\n", ret);
-    return 0;
+	int count = 0;
+	assert(str);//断言、指针判空
+	while(*str)
+	{
+		str++;
+		count++;
+	}
+	return count;
+}
+
+int main ()
+{
+	char* str = "abcdefgh";
+	printf("%d\n",my_strlen(str));
+	return 0;
 }
