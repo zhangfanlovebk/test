@@ -3071,25 +3071,133 @@ int main()
 //}
 
 //模拟实现strlen
+//#include <stdio.h>
+//#include <assert.h>
+//#include <stdlib.h>
+//
+//int my_strlen(const char* str)
+//{
+//	int count = 0;
+//	assert(str);//断言、指针判空
+//	while(*str)
+//	{
+//		str++;
+//		count++;
+//	}
+//	return count;
+//}
+//
+//int main ()
+//{
+//	char* str = "abcdefgh";
+//	printf("%d\n",my_strlen(str));
+//	return 0;
+//}
+
+
+//有一个字符数组的内容为:"student a am i",请你将数组的内容改为"i am a student".
+//要求：不能使用库函数。只能开辟有限个空间（空间个数和字符串的长度无关）
+//#include <stdio.h>
+//#include <string.h>
+//#include <assert.h>
+//void reverse_str(char *left, char *right)
+//{
+//    assert(left);
+//    assert(right);
+//    while (left < right)
+//    {
+//        char tmp = *left;
+//        *left = *right;
+//        *right = tmp;
+//        left++;
+//        right--;
+//    }
+//}
+//
+//void reverse(char arr[])
+//{
+//    char *pstart = arr;
+//    char *pend = arr + strlen(arr)-1;
+//    char *pcur = NULL;
+//    if ((arr == NULL) || (arr[0] == '\0'))
+//    {
+//        return;
+//    }
+//    reverse_str(pstart, pend);            //逆序整个字符数组
+//    while (*arr)
+//    {
+//        pcur = arr;
+//        while (*arr != '\0' && *arr != ' ')
+//        {
+//            arr++;
+//        }
+//        pend = arr - 1;
+//        reverse_str(pcur, pend);
+//        if (*arr == ' ')
+//            arr++;
+//    }
+//}
+//
+//int main()
+//{
+//    char arr[] = "swimming go to want I";
+//	char arr1[] = "student a am I";
+//    reverse(arr);
+//    printf("%s\n", arr);
+//    reverse(arr1);
+//    printf("%s\n", arr1);
+//    return 0;
+//}
+
+//方法二
 #include <stdio.h>
 #include <assert.h>
-#include <stdlib.h>
+#include <string.h>
 
-int my_strlen(const char* str)
-{
-	int count = 0;
-	assert(str);//断言、指针判空
-	while(*str)
-	{
-		str++;
-		count++;
-	}
-	return count;
-}
+void reverse(char *start, char *end)
+{ 
+	assert(start); 
+	assert(end); 
+	while (start < end) 
+	{ 
+		char tmp = *start; 
+		*start = *end; 
+		*end = tmp; 
+		start++; 
+		end--; 
+	} 
+} 
 
-int main ()
+void str_reverse(char *str) 
+{ 
+	int len = strlen(str);
+	assert(str); 
+	reverse(str, str + len - 1); 
+	while (*str != '\0') 
+	{ 
+		char *p = str; 
+		while ((*str != ' ') && (*str != '\0')) 
+		{ 
+			str++; 
+		} 
+		reverse(p, str - 1); 
+		if (*str != '\0') 
+		{ 
+			str++; 
+		} 
+	} 
+} 
+
+int main()
 {
-	char* str = "abcdefgh";
-	printf("%d\n",my_strlen(str));
-	return 0;
+    char arr[] = "swimming go to want I";
+	char arr1[] = "student a am I";
+    str_reverse(arr);
+    printf("%s\n", arr);
+    str_reverse(arr1);
+    printf("%s\n", arr1);
+	//char a[] = "ahjkf";
+	//printf("%d\n",sizeof(a));//6 若为strlen则为5.
+	//sizeof计算结果包括结尾的\0
+    return 0;
 }
