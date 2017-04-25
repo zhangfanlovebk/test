@@ -3211,32 +3211,32 @@ int main()
 #include <assert.h>
 #include <string.h>
 
-int change(char *arr1,char *arr2)
+int change(char *arr1,char *arr2)// arr1用来存放原字符，arr2用来存放加完%20后的字符
 {
 	assert(*arr1);
 	assert(*arr2);
 	while(*arr1)
 	{
-		if(*arr1 != ' ')
+		if(*arr1 != ' ')//当arr不为0时，进入while循环
 		{
 			*arr2 = *arr1;
 			arr2++;
 		}
 		else
 		{
-			strcpy(arr2,"%20");
-			arr2 += 3;
+			strcpy(arr2,"%20");//在arr2后面加上%20 ，arr2向后移动三个位置
+			arr2 += 3;//不是指针向后走三个
 		}
 		arr1++;
 	}
-	*arr2 = '\0';
+	*arr2 = '\0';//*arr2是‘\0’的时候就结束
 	return 0;
 }
 
 int main()
 {
-	char arr1[] = "I will change world";
-	char arr2[30];
+	char arr1[] = "I will change world";//切记数组带[]
+	char arr2[30];//arr1为20，arr2为26，注意开辟空间大小
 	change(arr1,arr2);
 	printf("%s\n",arr2);
 	return 0;
