@@ -3150,54 +3150,96 @@ int main()
 //}
 
 //方法二
+//#include <stdio.h>
+//#include <assert.h>
+//#include <string.h>
+//
+//void reverse(char *start, char *end)
+//{ 
+//	assert(start); 
+//	assert(end); 
+//	while (start < end) 
+//	{ 
+//		char tmp = *start; 
+//		*start = *end; 
+//		*end = tmp; 
+//		start++; 
+//		end--; 
+//	} 
+//} 
+//
+//void str_reverse(char *str) 
+//{ 
+//	int len = strlen(str);
+//	assert(str); 
+//	reverse(str, str + len - 1); 
+//	while (*str != '\0') 
+//	{ 
+//		char *p = str; 
+//		while ((*str != ' ') && (*str != '\0')) 
+//		{ 
+//			str++; 
+//		} 
+//		reverse(p, str - 1); 
+//		if (*str != '\0') 
+//		{ 
+//			str++; 
+//		} 
+//	} 
+//} 
+//
+//int main()
+//{
+//    char arr[] = "swimming go to want I";
+//	char arr1[] = "student a am I";
+//    str_reverse(arr);
+//    printf("%s\n", arr);
+//    str_reverse(arr1);
+//    printf("%s\n", arr1);
+//	//char a[] = "ahjkf";
+//	//printf("%d\n",sizeof(a));//6 若为strlen则为5.
+//	//sizeof计算结果包括结尾的\0
+//    return 0;
+//}
+
+
+
+//字符串替换空格：
+//请实现一个函数，把字符数组中的每个空格替换成“％20”。
+//例如输入“we are happy.”，则输出“we%20are%20happy.”
 #include <stdio.h>
 #include <assert.h>
 #include <string.h>
 
-void reverse(char *start, char *end)
-{ 
-	assert(start); 
-	assert(end); 
-	while (start < end) 
-	{ 
-		char tmp = *start; 
-		*start = *end; 
-		*end = tmp; 
-		start++; 
-		end--; 
-	} 
-} 
-
-void str_reverse(char *str) 
-{ 
-	int len = strlen(str);
-	assert(str); 
-	reverse(str, str + len - 1); 
-	while (*str != '\0') 
-	{ 
-		char *p = str; 
-		while ((*str != ' ') && (*str != '\0')) 
-		{ 
-			str++; 
-		} 
-		reverse(p, str - 1); 
-		if (*str != '\0') 
-		{ 
-			str++; 
-		} 
-	} 
-} 
+int change(char *arr1,char *arr2)
+{
+	assert(*arr1);
+	assert(*arr2);
+	while(*arr1)
+	{
+		if(*arr1 != ' ')
+		{
+			*arr2 = *arr1;
+			arr2++;
+		}
+		else
+		{
+			strcpy(arr2,"%20");
+			arr2 += 3;
+		}
+		arr1++;
+	}
+	*arr2 = '\0';
+	return 0;
+}
 
 int main()
 {
-    char arr[] = "swimming go to want I";
-	char arr1[] = "student a am I";
-    str_reverse(arr);
-    printf("%s\n", arr);
-    str_reverse(arr1);
-    printf("%s\n", arr1);
-	//char a[] = "ahjkf";
-	//printf("%d\n",sizeof(a));//6 若为strlen则为5.
-	//sizeof计算结果包括结尾的\0
-    return 0;
+	char arr1[] = "I will change world";
+	char arr2[30];
+	change(arr1,arr2);
+	printf("%s\n",arr2);
+	return 0;
 }
+
+
