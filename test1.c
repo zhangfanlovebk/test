@@ -3207,39 +3207,50 @@ int main()
 //字符串替换空格：
 //请实现一个函数，把字符数组中的每个空格替换成“％20”。
 //例如输入“we are happy.”，则输出“we%20are%20happy.”
+//#include <stdio.h>
+//#include <assert.h>
+//#include <string.h>
+//
+//int change(char *arr1,char *arr2)// arr1用来存放原字符，arr2用来存放加完%20后的字符
+//{
+//	assert(*arr1);
+//	assert(*arr2);
+//	while(*arr1)
+//	{
+//		if(*arr1 != ' ')//当arr不为0时，进入while循环
+//		{
+//			*arr2 = *arr1;
+//			arr2++;
+//		}
+//		else
+//		{
+//			strcpy(arr2,"%20");//在arr2后面加上%20 ，arr2向后移动三个位置
+//			arr2 += 3;//不是指针向后走三个
+//		}
+//		arr1++;
+//	}
+//	*arr2 = '\0';//*arr2是‘\0’的时候就结束
+//	return 0;
+//}
+//
+//int main()
+//{
+//	char arr1[] = "I will change world";//切记数组带[]
+//	char arr2[30];//arr1为20，arr2为26，注意开辟空间大小
+//	change(arr1,arr2);
+//	printf("%s\n",arr2);
+//	return 0;
+//}
+
+
+//写一个宏可以将一个数字的二进制奇数位和偶数位交换
 #include <stdio.h>
-#include <assert.h>
-#include <string.h>
-
-int change(char *arr1,char *arr2)// arr1用来存放原字符，arr2用来存放加完%20后的字符
-{
-	assert(*arr1);
-	assert(*arr2);
-	while(*arr1)
-	{
-		if(*arr1 != ' ')//当arr不为0时，进入while循环
-		{
-			*arr2 = *arr1;
-			arr2++;
-		}
-		else
-		{
-			strcpy(arr2,"%20");//在arr2后面加上%20 ，arr2向后移动三个位置
-			arr2 += 3;//不是指针向后走三个
-		}
-		arr1++;
-	}
-	*arr2 = '\0';//*arr2是‘\0’的时候就结束
-	return 0;
-}
-
+#define CHANGE(X) \
+    ((X&0x55555555)<<1)|((X&0xaaaaaaaa)>>1)//奇数位左移一位，偶数位右移一位
 int main()
 {
-	char arr1[] = "I will change world";//切记数组带[]
-	char arr2[30];//arr1为20，arr2为26，注意开辟空间大小
-	change(arr1,arr2);
-	printf("%s\n",arr2);
-	return 0;
+    int a=0;
+    scanf("%d",&a);
+    printf("奇偶位交换后：%d\n", CHANGE(a));
+    return 0;
 }
-
-
