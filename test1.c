@@ -3244,13 +3244,44 @@ int main()
 
 
 //写一个宏可以将一个数字的二进制奇数位和偶数位交换
-#include <stdio.h>
-#define CHANGE(X) \
-    ((X&0x55555555)<<1)|((X&0xaaaaaaaa)>>1)//奇数位左移一位，偶数位右移一位
-int main()
-{
-    int a=0;
-    scanf("%d",&a);
-    printf("奇偶位交换后：%d\n", CHANGE(a));
-    return 0;
-}
+//#include <stdio.h>
+//#define CHANGE(X) \
+//    ((X&0x55555555)<<1)|((X&0xaaaaaaaa)>>1)//奇数位左移一位，偶数位右移一位
+//int main()
+//{
+//    int a=0;
+//    scanf("%d",&a);
+//    printf("奇偶位交换后：%d\n", CHANGE(a));
+//    return 0;
+//}
+
+
+//模拟实现strstr函数(在串中查找指定字符串的第一次出现)
+
+#include <stdio.h> 
+const char *my_strstr(const char *str1, const char *str2) 
+{ 
+    int i = 0;
+    for(; str1[i] != '\0'; i++) 
+    { 
+        int tem = i;        //tem保留主串中的起始判断下标位置  
+        int j = 0; 
+        while(str1[i++] == str2[j++]) 
+        { 
+            if(str2[j] == '\0') 
+            { 
+                return &str1[tem]; 
+            } 
+        } 
+        i = tem; 
+    }
+    return NULL; 
+} 
+ 
+int main() 
+{ 
+    char *a = "12345 hello bit."; 
+    char *b = "4"; 
+    printf("%s\n", my_strstr(a, b)); 
+    return 0; 
+}  
