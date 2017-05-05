@@ -3258,30 +3258,83 @@ int main()
 
 //模拟实现strstr函数(在串中查找指定字符串的第一次出现)
 
-#include <stdio.h> 
-const char *my_strstr(const char *str1, const char *str2) 
-{ 
-    int i = 0;
-    for(; str1[i] != '\0'; i++) 
-    { 
-        int tem = i;        //tem保留主串中的起始判断下标位置  
-        int j = 0; 
-        while(str1[i++] == str2[j++]) 
-        { 
-            if(str2[j] == '\0') 
-            { 
-                return &str1[tem]; 
-            } 
-        } 
-        i = tem; 
-    }
-    return NULL; 
-} 
- 
+//#include <stdio.h> 
+//const char *my_strstr(const char *str1, const char *str2) 
+//{ 
+//    int i = 0;
+//    for(; str1[i] != '\0'; i++) 
+//    { 
+//        int tem = i;        //tem保留主串中的起始判断下标位置  
+//        int j = 0; 
+//        while(str1[i++] == str2[j++]) 
+//        { 
+//            if(str2[j] == '\0') 
+//            { 
+//                return &str1[tem]; 
+//            } 
+//        } 
+//        i = tem; 
+//    }
+//    return NULL; 
+//} 
+// 
+//int main() 
+//{ 
+//    char *a = "12345 hello bit."; 
+//    char *b = "4"; 
+//    printf("%s\n", my_strstr(a, b)); 
+//    return 0; 
+//}  
+
+
+//实现一个函数翻转字符串（将一个字符串的内容，逆序存储）
+//第一种
+#include <stdio.h>
 int main() 
 { 
-    char *a = "12345 hello bit."; 
-    char *b = "4"; 
-    printf("%s\n", my_strstr(a, b)); 
+    void con(char word[]); 
+    char a[40];
+    gets(a); 
+    con(a); 
     return 0; 
-}  
+} 
+ 
+void con(char word[]) 
+{ 
+    int i=0,z;
+    while(word[i++])
+    { 
+        z=i;
+    }
+    for(i=z-1;i>=0;i--)
+    {
+        printf("%c",word[i]);
+    }
+    printf("\n"); 
+}
+
+第二种
+#include <stdio.h>
+char *rstr(char* a)
+{
+    char *p1, *p2, t;
+    p2 = a;
+    p1 = p2;        //等同于p1=p2=a
+    while(*p2)
+    {
+        ++p2;
+    }
+    while(p1 < p2)
+    {
+        t = *p1;
+        *p1++ = *--p2;
+        *p2 = t;
+    }
+    return a;
+}
+
+int main()
+{
+    char a[] = "hello my big world.";
+    puts(rstr(a));
+}
