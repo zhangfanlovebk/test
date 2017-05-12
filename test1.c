@@ -3367,63 +3367,63 @@ int main()
 //AABCD左旋一个字符得到ABCDA
 //AABCD左旋两个字符得到BCDAA
 //第一种
-#include<stdio.h> 
-#include<string.h> 
-void left_move(char *p, int n) 
-{ 
-    int i;  //循环移位，对需要旋转的i个字符按顺序进行旋转
-    int len = strlen(p); 
-    for (i = 0; i < n; i++) 
-    { 
-        char tmp = p[0];  //将要旋转的一个字符保存起来，将后面的往前挪动一位
-        int j = 0; 
-        for (j = 0; j < len - 1; j++) 
-        { 
-            p[j] = p[j + 1]; 
-        } 
-        p[len - 1] = tmp;  //将保存起来的这个字符赋给最后一位，这样连续循环i次
-    } 
-}
-
-int main() 
-{ 
-    char arr[] = "abcdef"; 
-    int n = 0; 
-    scanf_s("%d", &n); 
-    left_move(arr, n); 
-    printf("%s\n", arr);   
-    return 0; 
-}
-
-//第二种
-//三步旋转法，先将要旋转的k个字符串逆序
-//再将剩余的字符串逆序，再对整个字符串逆序就得到了旋转k个字符后的字符串
 //#include<stdio.h> 
 //#include<string.h> 
-//void reverse(char *left, char *right) 
-//{ 
-//    while (left < right) 
-//    { 
-//        char tmp = *left; 
-//        *left = *right; 
-//        *right = tmp; 
-//        left++; 
-//        right--; 
-//    } 
-//} 
 //void left_move(char *p, int n) 
 //{ 
+//    int i;  //循环移位，对需要旋转的i个字符按顺序进行旋转
 //    int len = strlen(p); 
-//    reverse(p, p + n - 1); 
-//    reverse(p + n, p + len - 1); 
-//    reverse(p, p + len - 1); 
-//} 
+//    for (i = 0; i < n; i++) //外循环每次保存一个字符
+//    { 
+//        char tmp = p[0];  //将要旋转的一个字符保存起来，将后面的往前挪动一位
+//        int j = 0; 
+//        for (j = 0; j < len - 1; j++) 
+//        { 
+//            p[j] = p[j + 1]; 
+//        } 
+//        p[len - 1] = tmp;  //将保存起来的这个字符赋给最后一位，这样连续循环i次
+//    } 
+//}
+//
 //int main() 
 //{ 
 //    char arr[] = "abcdef"; 
 //    int n = 0; 
 //    scanf_s("%d", &n); 
 //    left_move(arr, n); 
-//    printf("%s\n", arr); 
+//    printf("%s\n", arr);   
 //    return 0; 
-//} 
+//}
+
+//第二种
+//三步旋转法，先将要旋转的k个字符串逆序
+//再将剩余的字符串逆序，再对整个字符串逆序就得到了旋转k个字符后的字符串
+#include<stdio.h> 
+#include<string.h> 
+void reverse(char *left, char *right) 
+{ 
+    while (left < right) 
+    { 
+        char tmp = *left; 
+        *left = *right; 
+        *right = tmp; 
+        left++; 
+        right--; 
+    } 
+} 
+void left_move(char *p, int n) //p是一个指针，指向字符串首地址
+{ 
+    int len = strlen(p); 
+    reverse(p, p + n - 1); //指针P到第n个逆序
+    reverse(p + n, p + len - 1); //剩余的到字符串结尾逆序
+    reverse(p, p + len - 1); //整个字符串逆序
+} 
+int main() 
+{ 
+    char arr[] = "abcdef"; 
+    int n = 0; 
+    scanf_s("%d", &n); 
+    left_move(arr, n); 
+    printf("%s\n", arr); 
+    return 0; 
+} 
