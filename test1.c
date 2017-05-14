@@ -3398,32 +3398,130 @@ int main()
 //第二种
 //三步旋转法，先将要旋转的k个字符串逆序
 //再将剩余的字符串逆序，再对整个字符串逆序就得到了旋转k个字符后的字符串
-#include<stdio.h> 
-#include<string.h> 
-void reverse(char *left, char *right) 
-{ 
-    while (left < right) 
-    { 
-        char tmp = *left; 
-        *left = *right; 
-        *right = tmp; 
-        left++; 
-        right--; 
-    } 
-} 
-void left_move(char *p, int n) //p是一个指针，指向字符串首地址
-{ 
-    int len = strlen(p); 
-    reverse(p, p + n - 1); //指针P到第n个逆序
-    reverse(p + n, p + len - 1); //剩余的到字符串结尾逆序
-    reverse(p, p + len - 1); //整个字符串逆序
-} 
-int main() 
-{ 
-    char arr[] = "abcdef"; 
-    int n = 0; 
-    scanf_s("%d", &n); 
-    left_move(arr, n); 
-    printf("%s\n", arr); 
-    return 0; 
-} 
+//#include<stdio.h> 
+//#include<string.h> 
+//void reverse(char *left, char *right) 
+//{ 
+//    while (left < right) 
+//    { 
+//        char tmp = *left; 
+//        *left = *right; 
+//        *right = tmp; 
+//        left++; 
+//        right--; 
+//    } 
+//} 
+//void left_move(char *p, int n) //p是一个指针，指向字符串首地址
+//{ 
+//    int len = strlen(p); 
+//    reverse(p, p + n - 1); //指针P到第n个逆序
+//    reverse(p + n, p + len - 1); //剩余的到字符串结尾逆序
+//    reverse(p, p + len - 1); //整个字符串逆序
+//} 
+//int main() 
+//{ 
+//    char arr[] = "abcdef"; 
+//    int n = 0; 
+//    scanf_s("%d", &n); 
+//    left_move(arr, n); 
+//    printf("%s\n", arr); 
+//    return 0; 
+//} 
+
+
+//判断一个字符串是否为另外一个字符串旋转之后的字符串。
+//例如：给定s1 ＝ AABCD和s2 = BCDAA，返回1，给定s1=abcd和s2=ACBD，返回0.
+//AABCD左旋一个字符得到ABCDA
+//AABCD左旋两个字符得到BCDAA
+//AABCD右旋一个字符得到DAABC
+//AABCD右旋两个字符得到CDAAB
+#include<stdio.h>
+#include <string.h>
+void reserve(char *left, char*right)
+{
+    while (left < right)
+    {
+        char tmp = *left;
+        *left = *right;
+        *right = tmp;
+        left++;
+        right--;
+    }
+}
+
+void left_reserve(char arr[], int k)
+{
+    int len = strlen(arr) - 1;
+    char *pstart = &arr[0];
+    char *pend = arr + len;
+    reserve(pstart, pstart + k - 1);
+    reserve(pstart + k, pend);
+    reserve(pstart, pend);
+}
+
+void right_reserve(char arr[], int k)
+{
+    int len = strlen(arr) - 1;
+    char *pstart = &arr[0];
+    char *pend = arr + len;
+    reserve(pstart, pstart + len - k);
+    reserve(pend - k+1, pend);
+    reserve(pstart, pend);
+}
+
+int main()
+{
+    int k = 5;
+    char arr[20]="ABCDEF";
+    char arr2[20]="CDEFBA";
+    char *p = arr;
+    while (k)
+    {
+        left_reserve(arr, k);
+        if (strcmp(arr, arr2) == 0)
+        {
+            printf("1\n");
+            break;
+        }
+        right_reserve(p, k);
+        if (strcmp(p, arr2) == 0)
+        {
+            printf("1\n");
+            break;
+        }
+        k--;
+    }
+    if (0 == k)
+    {
+        printf("0\n");
+    }
+    system("pause");
+}
+//建议方法
+//#include <stdio.h> 
+//#include <string.h> 
+//#include <assert.h> 
+//int rotate(char *p, char *q) 
+//{ 
+//    assert(p != NULL && q != NULL); 
+//    strncat(p,p,strlen(p)); 
+//    if (strstr(p, q) == NULL) 
+//    { 
+//        return 0; 
+//    } 
+//    else 
+//    { 
+//        return 1; 
+//    } 
+//} 
+// 
+//int main() 
+//{ 
+//    char p[20] = "AABCD"; 
+//    char *q = "BCDAA"; 
+//    char r[20] = "abcd"; 
+//    char *s = "ACBD"; 
+//    printf("%d\n", rotate(p, q)); 
+//    printf("%d\n", rotate(r, s)); 
+//    return 0; 
+//}
