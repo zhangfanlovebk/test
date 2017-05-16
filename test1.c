@@ -3525,3 +3525,51 @@ int main()
 //    printf("%d\n", rotate(r, s)); 
 //    return 0; 
 //}
+
+
+//求第n个斐波那契数（非递归实现）。
+#include <stdio.h>
+int fib(int n)
+{
+    int a1 = 1;
+    int a2 = 1;
+    int an = a1;
+    if (n <= 2)
+    {
+        return an;
+    }
+    while(n > 2)
+    {
+        an = a1 + a2;
+        a1 = a2;
+        a2 = an;
+        n--;
+    }
+    return an;
+}
+
+int main()
+{
+    int n = 0;
+    scanf("%d", &n);
+    printf("%d\n", fib(n));
+    return 0;
+}
+
+//递归方法
+#include <stdio.h>
+#include <stdlib.h>
+int fib(int n)
+{
+    if (n <= 2)
+        return 1;
+    else
+        return fib(n - 1) + fib(n - 2);
+}
+int main()
+{
+    int n = 0;
+    scanf("%d", &n);
+    printf("%d\n", fib(n));
+    return 0;
+}
